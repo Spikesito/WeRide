@@ -1,22 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './App/Components/Screens/Login/LoginScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import LoginRegStackNavigator from './App/Navigation/LoginRegStackNavigator';
+import 'react-native-gesture-handler';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Bienvenue sur WeRide brooo</Text>
-      <LoginScreen />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <LoginRegStackNavigator />
+
+      {/* <LoginScreen/> */}
+      <StatusBar hidden={true} />
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff'
   },
 });

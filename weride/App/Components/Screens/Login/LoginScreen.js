@@ -4,7 +4,7 @@ import LoginForm from '../Login/LoginForm';
 
 const LoginScreen = () => {
   return (
-    <View>
+    <View style={{flex:1}}>
       <Text>Login Screen</Text>
       <LoginForm />
     </View>
