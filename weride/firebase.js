@@ -27,6 +27,7 @@ if (firebase.apps.length === 0) {
 const auth = firebase.auth()
 export { auth };
 
+
 //init services
 export default function writeUserData(userId, firstname, new_pseudo, new_email, phone, bdate, new_password) {
     const db = getDatabase()
