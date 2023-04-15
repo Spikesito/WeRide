@@ -1,19 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Tab from "./src/Tab";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import ConInscri from "./src/ConInscri";
+import ConnexionScreen from "./src/Hello/ConnexionScreen";
+import InscriptionScreen from "./src/Hello/InscriptionScreen";
+
+// export default function App() {
+//   return <Tab />;
+// }
+
 
 export default function App() {
-  return <Tab />;
+  return <ConInscri />;
 }
-
-// export default function App(){
-//   return (
-//     <View>
-//       <Image source={require('./assets/motoAcceuil.jpg')} />
-//     </View>
-//   )
-// }
 
 const styles = StyleSheet.create({
   container: {
