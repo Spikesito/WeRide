@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { KeyboardAvoidingView, View,  Text, TextInput, TouchableOpacity, StyleSheet, FlatList, CheckBox } from 'react-native';
+import { KeyboardAvoidingView, View,  Text, TextInput, TouchableOpacity, StyleSheet, FlatList, CheckBox, Button } from 'react-native';
 import { auth } from '../../../../firebase';
 import axios from 'axios';
 
 const RidesForm = () => {
-  const [editable, setEditable] = useState(false);
+  const [editableEnd, setEditableEnd] = useState(false);
+  const [editableStep, setEditableStep] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startPoint, setStartPoint] = useState('');
@@ -14,8 +15,14 @@ const RidesForm = () => {
   const [endPointSuggestions, setEndPointSuggestions] = useState([]);
   const [showEndPointSuggestions, setShowEndPointSuggestions] = useState(true);
   const [startDate, setStartDate] = useState('');
+  const [step, setStep] = useState('');
+  const [stepList, setStepList] = useState([]);
+  const [stepSuggestions, setStepSuggestions] = useState([]);
+  const [showStepSuggestions, setShowStepSuggestions] = useState(true);
 
-  const toggleEditable = () => setEditable(!editable);
+  const toggleEditableEnd = () => setEditableEnd(!editableEnd);
+
+  const toggleEditableStep = () => setEditableStep(!editableStep);
 
   const handleStartPointChange = (text) => {
     setStartPoint(text);
@@ -65,6 +72,40 @@ const RidesForm = () => {
     setShowEndPointSuggestions(false);
   };
 
+  const handleStepChange = (text) => {
+    setStep(text);
+  
+    axios.get(`https://api-adresse.data.gouv.fr/search/?q=${text}`)
+      .then((response) => {
+        const suggestions = response.data.features.map((feature) => {
+          return {
+            label: feature.properties.label,
+          };
+        });
+        setStepSuggestions(suggestions);
+        setShowStepSuggestions(suggestions.length > 0);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleStepSelect = (item) => {
+    setStep(item.label);
+    setStepSuggestions([]);
+    setShowStepSuggestions(false);
+  };
+
+  const addStepToList = () => {
+    if (step) {
+      setStepList([...stepList, { id : step.length, name: step}]);
+      setStep('');
+    }
+  };
+
+  const renderStep = ({ item }) => (
+    <Text style={{ paddingVertical: 10 }}>{item.name}</Text>
+  );
 
   const handleRide = () => {
     console.log(title, description, startPoint, endPoint, startDate)
@@ -96,7 +137,7 @@ const RidesForm = () => {
           style={styles.input}
         />
         <TextInput
-          placeholder="Date de départ"
+          placeholder="Date de départ (DD/MM/YYYY)"
           value={startDate}
           onChangeText={text => setStartDate(text)}
           style={styles.input}
@@ -119,18 +160,18 @@ const RidesForm = () => {
         )}
         <View style={styles.checkboxContainer}>
         <CheckBox
-          value={editable}
-          onValueChange={toggleEditable}
+          value={editableEnd}
+          onValueChange={toggleEditableEnd}
           style={styles.checkbox}
         />
         <Text style={styles.label}>Je veux créer un trajet (d'un point A à un point B)</Text>
         </View>
-        {editable && <TextInput
+        {editableEnd && <TextInput
           placeholder="Lieu d'arrivée"
           value={endPoint}
           onChangeText={handleEndPointChange}
           style={styles.input}
-          editable={editable}
+          editable={editableEnd}
         />}
         { showEndPointSuggestions && (
           <FlatList
@@ -142,6 +183,38 @@ const RidesForm = () => {
             )}
           />
         )}
+        <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={editableStep}
+          onValueChange={toggleEditableStep}
+          style={styles.checkbox}
+        />
+        <Text style={styles.label}>Ajouter une étape au trajet</Text>
+        </View>
+        { editableStep && <TextInput
+          placeholder="Lieu de l'étape"
+          value={step}
+          onChangeText={handleStepChange}
+          style={styles.input}
+          editable={editableStep}
+        />}
+        { showStepSuggestions && (
+          <FlatList
+            data={stepSuggestions}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleStepSelect(item)}>
+                <Text>{item.label}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
+        { editableStep && <Button title="Ajouter" onPress={addStepToList} />}
+        { editableStep &&<Text style={styles.label}>Étape du trajet:</Text>}
+        { editableStep && <FlatList
+          data={stepList}
+          renderItem={renderStep}
+          keyExtractor={(item) => item.id.toString()}
+        />}
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
