@@ -9,8 +9,10 @@ const RidesForm = () => {
   const [description, setDescription] = useState('');
   const [startPoint, setStartPoint] = useState('');
   const [startPointSuggestions, setStartPointSuggestions] = useState([]);
+  const [showStartPointSuggestions, setShowStartPointSuggestions] = useState(true);
   const [endPoint, setEndPoint] = useState('');
   const [endPointSuggestions, setEndPointSuggestions] = useState([]);
+  const [showEndPointSuggestions, setShowEndPointSuggestions] = useState(true);
   const [startDate, setStartDate] = useState('');
 
   const toggleEditable = () => setEditable(!editable);
@@ -23,11 +25,10 @@ const RidesForm = () => {
         const suggestions = response.data.features.map((feature) => {
           return {
             label: feature.properties.label,
-            lat: feature.geometry.coordinates[1],
-            lon: feature.geometry.coordinates[0],
           };
         });
         setStartPointSuggestions(suggestions);
+        setShowStartPointSuggestions(suggestions.length > 0);
       })
       .catch((error) => {
         console.error(error);
@@ -36,9 +37,8 @@ const RidesForm = () => {
 
   const handleStartPointSelect = (item) => {
     setStartPoint(item.label);
-    setStartPointLatitude(item.lat);
-    setStartPointLongitude(item.lon);
     setStartPointSuggestions([]);
+    setShowStartPointSuggestions(false);
   };
 
   const handleEndPointChange = (text) => {
@@ -49,11 +49,10 @@ const RidesForm = () => {
         const suggestions = response.data.features.map((feature) => {
           return {
             label: feature.properties.label,
-            lat: feature.geometry.coordinates[1],
-            lon: feature.geometry.coordinates[0],
           };
         });
         setEndPointSuggestions(suggestions);
+        setShowEndPointSuggestions(suggestions.length > 0);
       })
       .catch((error) => {
         console.error(error);
@@ -62,17 +61,13 @@ const RidesForm = () => {
 
   const handleEndPointSelect = (item) => {
     setEndPoint(item.label);
-    setEndPointLatitude(item.lat);
-    setEndPointLongitude(item.lon);
     setEndPointSuggestions([]);
+    setShowEndPointSuggestions(false);
   };
 
-  const addStep = () => {
-
-  }
 
   const handleRide = () => {
-    console.log(title, description, startPoint, endPoint, startDate, endDate)
+    console.log(title, description, startPoint, endPoint, startDate)
 //    auth
 //      .signInWithEmailAndPassword(email, password)
  //     .then(userCredentials => {
@@ -89,7 +84,7 @@ const RidesForm = () => {
     >
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Title"
+          placeholder="Titre"
           value={title}
           onChangeText={text => setTitle(text)}
           style={styles.input}
@@ -112,14 +107,16 @@ const RidesForm = () => {
           onChangeText={handleStartPointChange}
           style={styles.input}
         />
-        <FlatList
-          data={startPointSuggestions}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => handleStartPointSelect(item)}>
-              <Text>{item.label}</Text>
-            </TouchableOpacity>
-           )}
-        />
+        {showStartPointSuggestions && (
+          <FlatList
+            data={startPointSuggestions}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleStartPointSelect(item)}>
+                <Text>{item.label}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
         <View style={styles.checkboxContainer}>
         <CheckBox
           value={editable}
@@ -135,14 +132,16 @@ const RidesForm = () => {
           style={styles.input}
           editable={editable}
         />}
-        <FlatList
-          data={endPointSuggestions}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => handleEndPointSelect(item)}>
-              <Text>{item.label}</Text>
-            </TouchableOpacity>
-           )}
-        />
+        { showEndPointSuggestions && (
+          <FlatList
+            data={endPointSuggestions}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => handleEndPointSelect(item)}>
+                <Text>{item.label}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
