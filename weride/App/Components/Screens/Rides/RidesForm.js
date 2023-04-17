@@ -1,28 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, View,  Text, TextInput, TouchableOpacity, StyleSheet, FlatList, CheckBox, Button } from 'react-native';
 import { auth } from '../../../../firebase';
+import writeTripData from '../../../../dbFunction';
 import axios from 'axios';
 
 const RidesForm = () => {
   const [editableEnd, setEditableEnd] = useState(false);
   const [editableStep, setEditableStep] = useState(false);
+  const [type, setType] = useState(true)
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [startDate, setStartDate] = useState('');
   const [startPoint, setStartPoint] = useState('');
   const [startPointSuggestions, setStartPointSuggestions] = useState([]);
   const [showStartPointSuggestions, setShowStartPointSuggestions] = useState(true);
   const [endPoint, setEndPoint] = useState('');
   const [endPointSuggestions, setEndPointSuggestions] = useState([]);
   const [showEndPointSuggestions, setShowEndPointSuggestions] = useState(true);
-  const [startDate, setStartDate] = useState('');
   const [step, setStep] = useState('');
   const [stepList, setStepList] = useState([]);
   const [stepSuggestions, setStepSuggestions] = useState([]);
   const [showStepSuggestions, setShowStepSuggestions] = useState(true);
 
-  const toggleEditableEnd = () => setEditableEnd(!editableEnd);
+  const toggleEditableEnd = () => {
+    setEditableEnd(!editableEnd);
+    if (editableEnd) {
+      setEndPoint('');
+    }
+  };
 
-  const toggleEditableStep = () => setEditableStep(!editableStep);
+  const toggleEditableStep = () => {
+    setEditableStep(!editableStep);
+    if (editableStep) {
+      setStepList([]);
+    }
+  };
 
   const handleStartPointChange = (text) => {
     setStartPoint(text);
@@ -98,24 +110,35 @@ const RidesForm = () => {
 
   const addStepToList = () => {
     if (step) {
-      setStepList([...stepList, { id : step.length, name: step}]);
+      setStepList([...stepList, { id : stepList.length, name: step}]);
       setStep('');
     }
   };
 
   const renderStep = ({ item }) => (
+    <View style={{ flexDirection: 'row', alignItems: 'center'}}>
     <Text style={{ paddingVertical: 10 }}>{item.name}</Text>
+    <TouchableOpacity onPress={() => deleteStep(item.id)}>
+      <Text style={styles.deleteButton}>Supprimer</Text>
+    </TouchableOpacity>
+    </View>
   );
 
+  const deleteStep = (id) => {
+    setStepList((prevList) => prevList.filter((item) => item.id !== id));
+  }
+
+  useEffect(() => {
+    if (endPoint != '') {
+      setType(false)
+    } else {
+      setType(true)
+    }
+  }, [endPoint])
+
   const handleRide = () => {
-    console.log(title, description, startPoint, endPoint, startDate)
-//    auth
-//      .signInWithEmailAndPassword(email, password)
- //     .then(userCredentials => {
-//        const user = userCredentials.user;
- //       console.log('Logged in with:', user.email);
- //     })
- //     .catch(error => alert(error.message))
+    console.log(type, title, description, startDate, startPoint, endPoint, stepList)
+    writeTripData(type, title, description, startDate, startPoint, endPoint, stepList)
   }
 
   return (
@@ -171,7 +194,6 @@ const RidesForm = () => {
           value={endPoint}
           onChangeText={handleEndPointChange}
           style={styles.input}
-          editable={editableEnd}
         />}
         { showEndPointSuggestions && (
           <FlatList
@@ -282,6 +304,10 @@ const styles = StyleSheet.create({
   },
   label: {
     margin: 8,
+  },
+  deleteButton: {
+    color: "red",
+    marginLeft: 10,
   },
 });
 
