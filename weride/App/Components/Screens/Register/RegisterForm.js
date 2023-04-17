@@ -1,43 +1,122 @@
 import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../../../../firebase';
-import writeUserData from '../../../../firebase';
+import createUser from '../../../../Data/functions';
+import auth from '@react-native-firebase/auth';
 
 const RegisterForm = () => {
-    const [name, setName] = useState('');
-    const [pseudo, setPseudo] = useState('');
-    const [phone, setPhone] = useState('');
-    const [date, setDate] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmedPassword, setConfirmedPassword] = useState('');
+    // const [name, setName] = useState('');
+    // const [pseudo, setPseudo] = useState('');
+    // const [phone, setPhone] = useState('');
+    // const [date, setDate] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [confirmedPassword, setConfirmedPassword] = useState('');
+
+    const initialState = {
+        firstname: '',
+        pseudo: '',
+        phone: '',
+        date: '',
+        email: '',
+        password: '',
+        confirmedPassword: '',
+    };
+
+    const [formData, setFormData] = useState(initialState);
+
+    const [seePassword, setSeePassword] = useState(true);
+    const [checkValidEmail, setCheckValidEmail] = useState(false);
+    const [checkValidDate, setCheckValidDate] = useState(false);
 
     const navigation = useNavigation()
 
     useEffect(() => {
-        writeUserData("user_emile", "emile", "younjo", "emile@younjo.fr", "928219218", "23/01/2001", "MDPCrypté");
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if (user) {
-                navigation.replace("Home")
-            }
+        setFormData({
+            firstname: '',
+            pseudo: '',
+            date: '',
+            email: '',
+            password: '',
+            confirmedPassword: '',
         })
-
-        return unsubscribe
     }, [])
 
-    const handleSignUp = () => {
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log('Registered with:', user.email);
+    const handleCheckEmail = (text) => {
+        let re = /\S+@\S+\.\S+/;
+        let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+        setFormData({
+            ...formData,
+            email: text,
+        })
+
+        if (re.test(text) || regex.test(text)) {
+            setCheckValidEmail(false);
+        } else {
+            setCheckValidEmail(true);
+        }
+    }
+
+    const handleDateFormat = (text) => {
+        const dateRegex = /^(0[1-9]|[1-2]\d|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+            setFormData({
+                ...formData,
+                date: text,
             })
-            .catch(error => alert(error.message))
+
+        if (dateRegex.test(text)) {
+            setCheckValidDate(false);
+        } else {
+            setCheckValidDate(true);
+        }
+        console.log(text)
+    }
+
+    const checkPasswordValidity = value => {
+        const isNonWhiteSpace = /^\S*$/;
+        if (!isNonWhiteSpace.test(value)) {
+            return 'Password must not contain Whitespaces.';
+        }
+
+        const isContainsUppercase = /^(?=.*[A-Z]).*$/;
+        if (!isContainsUppercase.test(value)) {
+            return 'Password must have at least one Uppercase Character.';
+        }
+
+        const isContainsLowercase = /^(?=.*[a-z]).*$/;
+        if (!isContainsLowercase.test(value)) {
+            return 'Password must have at least one Lowercase Character.';
+        }
+
+        const isContainsNumber = /^(?=.*[0-9]).*$/;
+        if (!isContainsNumber.test(value)) {
+            return 'Password must contain at least one Digit.';
+        }
+
+        const isValidLength = /^.{8,16}$/;
+        if (!isValidLength.test(value)) {
+            return 'Password must be 8-16 Characters Long.';
+        }
+
+        // const isContainsSymbol =
+        //   /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+        // if (!isContainsSymbol.test(value)) {
+        //   return 'Password must contain at least one Special Symbol.';
+        // }
+
+        return null;
+    }
+
+    const handleSignUp = () => {
+        checkPasswordValidity(formData.password)
+        createUser(formData)
+        navigation.navigate("Home")
     }
 
     const handleLogin = () => {
-        navigation.navigate("LoginScreen")
+        navigation.navigate("Login")
     }
 
     return (
@@ -48,49 +127,61 @@ const RegisterForm = () => {
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder="Prénom"
-                    value={name}
-                    onChangeText={text => setName(text)}
+                    value={formData.firstname}
+                    onChangeText={text => setFormData({
+                        ...formData,
+                        firstname: text,
+                    })}
                     style={styles.input}
-                    secureTextEntry
                 />
                 <TextInput
                     placeholder="Pseudo"
-                    value={pseudo}
-                    onChangeText={text => setPseudo(text)}
+                    value={formData.pseudo}
+                    onChangeText={text => setFormData({
+                        ...formData,
+                        pseudo: text,
+                    })}
                     style={styles.input}
-                    secureTextEntry
                 />
                 <TextInput
                     placeholder="Email"
-                    value={email}
-                    onChangeText={text => setEmail(text)}
+                    value={formData.email}
+                    onChangeText={text => handleCheckEmail(text)}
                     style={styles.input}
-                    secureTextEntry
                 />
-                <TextInput
-                    placeholder="Téléphone"
-                    value={phone}
-                    onChangeText={text => setPhone(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
+                {checkValidEmail ? (
+                    <Text style={styles.textFailed}>Wrong format email</Text>
+                ) : (
+                    <Text style={styles.textFailed}></Text>
+                )}
                 <TextInput
                     placeholder="Date de naissance (DD/MM/YYYY)"
-                    value={date}
-                    onChangeText={text => setDate(text)}
+                    value={formData.date}
+                    onChangeText={text => handleDateFormat(text)}
                     style={styles.input}
                 />
+                {checkValidDate ? (
+                    <Text style={styles.textFailed}>Wrong date format</Text>
+                ) : (
+                    <Text style={styles.textFailed}></Text>
+                )}
                 <TextInput
                     placeholder="Mot de passe"
-                    value={password}
-                    onChangeText={text => setPassword(text)}
+                    value={formData.password}
+                    onChangeText={text => setFormData({
+                        ...formData,
+                        password: text,
+                    })}
                     style={styles.input}
                     secureTextEntry
                 />
                 <TextInput
                     placeholder="Confirmer Mot de passe"
-                    value={confirmedPassword}
-                    onChangeText={text => setConfirmedPassword(text)}
+                    value={formData.confirmedPassword}
+                    onChangeText={text => setFormData({
+                        ...formData,
+                        confirmedPassword: text,
+                    })}
                     style={styles.input}
                     secureTextEntry
                 />
@@ -158,6 +249,10 @@ const styles = StyleSheet.create({
         color: '#0782F9',
         fontWeight: '700',
         fontSize: 16,
+    },
+    textFailed: {
+        alignSelf: 'flex-end',
+        color: 'red',
     },
 });
 
