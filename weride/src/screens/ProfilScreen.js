@@ -26,7 +26,9 @@ const ProfilScreen = () => {
         <View style={{marginTop: '3%'}}>
           <Text style={{fontWeight: 'bold'}}>Trajet effectués</Text>
           <Text>10 trajets depuis juillet 2022</Text>
-          <TouchableOpacity style={{backgroundColor: 'transparent'}}> <Text style={{fontSize: '2.5vw'}}>Voir l'historique</Text></TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor: 'transparent'}}> 
+            <Text style={{fontSize: '2.5vw'}}>Voir l'historique</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={{marginTop: '3%'}}>

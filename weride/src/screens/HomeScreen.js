@@ -10,12 +10,8 @@ const HomeScreen = () => {
   const Home = createBottomTabNavigator();
 
   return (
-    <View>
+    <View name="Home">
       <Text>Este es el home 1</Text>
-      {/* <Button
-        title="Ir a home 2"
-        onPress={() => navigation.navigate("Home")}
-      /> */}
       {/* <NavigationContainer> */}
         <Home.Navigator screenOptions={{ headerShown: false }}>
           <Home.Screen name="Actualités" component={HomeScreenActu} />

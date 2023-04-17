@@ -10,17 +10,18 @@ import { NavigationContainer } from "@react-navigation/native";
 
 
 const Tabs = () => {
-  const Tab = createBottomTabNavigator();
+  const Tabs = createBottomTabNavigator();
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Fil d'actu" component={HomeStackScreen} />
-        <Tab.Screen name="Découvrir" component={SearchStackScreen} />
-        <Tab.Screen name="Mes Trajets" component={MyPathStackScreen} />
-        <Tab.Screen name="Messagerie" component={MessStackScreen} />
-        <Tab.Screen name="Profil" component={ProfilStackScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer name= "Menu">
+      <Tabs.Navigator  screenOptions={{ headerShown: false }}>
+        <Tabs.Screen name="Fil d'actu" component={HomeStackScreen} />
+        <Tabs.Screen name="Découvrir" component={SearchStackScreen} />
+        <Tabs.Screen name="Mes Trajets" component={MyPathStackScreen} />
+        <Tabs.Screen name="Messagerie" component={MessStackScreen} />
+        <Tabs.Screen name="Profil" component={ProfilStackScreen} />
+      </Tabs.Navigator>
+    // </NavigationContainer>
+    
   );
 };
 

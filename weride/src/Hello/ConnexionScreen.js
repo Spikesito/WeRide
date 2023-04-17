@@ -1,23 +1,14 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
 import App from '../../App';
 
 // const Stack = createStackNavigator();
 
 const ConnexionScreen = () => {
-    // return (
-        // <NavigationContainer>
-        //   <Stack.Navigator>
-        //     <Stack.Screen name="Connexion" component={App} />
-        //   </Stack.Navigator>
-        // </NavigationContainer>
-//         <View>
-//           <Text>Sa marche</Text>
-//         </View>
-//       );
-// }
+  const navigation = useNavigation();
 return (
   <View style={styles.container}>
     <Text style={styles.title}>S'identifier</Text>
@@ -34,7 +25,7 @@ return (
       // secureTextEntry={true}
       // onChangeText={handlePasswordChange}
     />
-    <TouchableOpacity style={styles.button} onPress={() => console.log("OK")}>
+    <TouchableOpacity style={styles.button} name="Connexion" onPress={() => navigation.navigate("Tabs")}>
       <Text style={styles.buttonText}>Se connecter</Text>
     </TouchableOpacity>
     <TouchableOpacity>
@@ -42,7 +33,7 @@ return (
     </TouchableOpacity>
     <View style={styles.bottomContainer}>
       <Text style={styles.bottomText}>Vous n'avez pas de compte ?</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Inscription")}>
         <Text style={styles.bottomButtonText}>S'inscrire</Text>
       </TouchableOpacity>
     </View>

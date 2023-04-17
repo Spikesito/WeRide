@@ -5,22 +5,21 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
 const ConInscri = () => {
-    const ConInscri = createNativeStackNavigator();
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
      return (
         <View style={styles.container}>
             <Image source={require('./../assets/motoAcceuil.jpg')} style={styles.image} />
                 <TouchableOpacity
                     style={styles.buttonConnexion}
-                    // onPress={() => navigation.navigate("Connexion")}
-                    onPress={() => console.log("Connexion OK")}
+                    onPress={() => navigation.navigate("Connexion")}
+                    // onPress={() => console.log("Connexion OK")}
                     >
                     <Text style= {styles.textConnexion}>Se connecter</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.buttonInscription}
-                    // onPress={() => navigation.navigate("Inscription")}
-                    onPress={() => console.log("Inscription OK")}
+                    onPress={() => navigation.navigate("Inscription")}
+                    // onPress={() => console.log("Inscription OK")}
                     >
                     <Text style= {styles.textInscription}>S'inscrire</Text>
                 </TouchableOpacity>
