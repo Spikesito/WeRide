@@ -9,7 +9,7 @@ const MyPathScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NewTrajet')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NewTrajets')}>
         <ImageBackground source={require('../../assets/motoAcceuil.jpg')} style={styles.imageBackground}>
           <Text style={styles.buttonText}>Créer un trajet</Text>
         </ImageBackground>

@@ -2,10 +2,11 @@ import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react
 import React from 'react'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MyPathScreen from '../screens/MyPathScreen';
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 
 const NewPath = () => {
+    const navigation = useNavigation();
     return (
         // <NavigationContainer>
         //     <NewPath.Navigator>
@@ -15,13 +16,13 @@ const NewPath = () => {
         // </NavigationContainer>
         <View style={styles.container}>
             <Text style={styles.text}>Quel est votre type de trajet ?</Text>
-            <TouchableOpacity style={styles.button} onPress={() => console.log("Balade")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BaladeTrajet')}>
                 <ImageBackground source={require('../../assets/motoAcceuil.jpg')} style={styles.imageBackground}>
                 <Text style={styles.buttonText}>Balade</Text>
             </ImageBackground>
             </TouchableOpacity>
   
-            <TouchableOpacity style={styles.button} onPress={() => console.log("Trajet")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BaladeTrajet')}>
                 <ImageBackground source={require('../../assets/motoAcceuil.jpg')} style={styles.imageBackground}>
                 <Text style={styles.buttonText}>Trajet </Text>
                 </ImageBackground>
