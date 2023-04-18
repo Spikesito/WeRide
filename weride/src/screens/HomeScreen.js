@@ -13,10 +13,10 @@ const HomeScreen = () => {
     <View name="Home">
       <Text>Este es el home 1</Text>
       {/* <NavigationContainer> */}
-        <Home.Navigator screenOptions={{ headerShown: false }}>
+        {/* <Home.Navigator screenOptions={{ headerShown: false }}>
           <Home.Screen name="Actualités" component={HomeScreenActu} />
           <Home.Screen name="Évènements" component={HomeScreenEvent} />
-        </Home.Navigator>
+        </Home.Navigator> */}
       {/* </NavigationContainer> */}
     </View>
   );
