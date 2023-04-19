@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, View,  Text, TextInput, TouchableOpacity, StyleSheet, FlatList, CheckBox, Button } from 'react-native';
-import { auth } from '../../../../firebase';
 import writeTripData from '../../../../dbFunction';
 import axios from 'axios';
 
@@ -136,9 +135,20 @@ const RidesForm = () => {
     }
   }, [endPoint])
 
+  const lastStepToEndPoint = () => {
+    const lastStep = stepList.slice(-1).map(step => step.name)[0]; 
+    stepList.pop();
+    return lastStep;
+  }
+
   const handleRide = () => {
     console.log(type, title, description, startDate, startPoint, endPoint, stepList)
-    writeTripData(type, title, description, startDate, startPoint, endPoint, stepList)
+    if (endPoint == '' && stepList.length != 0) {
+      const newEndPoint = lastStepToEndPoint();
+      writeTripData(type, title, description, startDate, startPoint, newEndPoint, stepList)
+    } else {
+      writeTripData(type, title, description, startDate, startPoint, endPoint, stepList)
+    }
   }
 
   return (
