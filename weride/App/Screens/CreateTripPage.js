@@ -3,8 +3,10 @@ import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react
 import { createData, readData } from "../CRUD";
 import { auth } from "../firebase";
 import { handleAddressChange, handleAddressSelect } from "../Components/ExternalFunction/FuncApiAdd";
+import { errorHandler } from "../Components/ExternalFunction/FuncFromChecker";
 
 const CreateTripPage = ({ navigation }) => {
+  const [errorMessage, setErrorMessage] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [departureDate, setDepartureDate] = useState("");
@@ -67,13 +69,16 @@ const CreateTripPage = ({ navigation }) => {
   }
 
   const createTrip = async () => {
-    try {
+    if (errorHandler(setErrorMessage, title, description, departureDate, departure, arrival, stepsList)) {
+      setErrorMessage("");
+      try {
         trip = {
             title: title,
             description: description,
             departure_date: departureDate,
             departure: departure,
             arrival: arrival,
+            steps: stepsList.map(step => step.name),
             creator: currentUser,
             participant: [],
             messaging: "id_de_la_messagerie",
@@ -81,14 +86,18 @@ const CreateTripPage = ({ navigation }) => {
         createData('trips/', trip);
         console.log("le trip a été créé", trip);
         navigation.navigate("Home");
-    }
-    catch (error) {
+      }
+      catch (error) {
         console.error(error);
+      }
     }
   };
 
   return (
     <View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+        {errorMessage ? <Text style={{ color: 'red', fontSize: 15 }}> {errorMessage} </Text> : null}
+      </View>
       <Text>Titre:</Text>
       <TextInput value={title} onChangeText={setTitle} />
 
