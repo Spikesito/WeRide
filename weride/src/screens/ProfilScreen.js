@@ -9,7 +9,7 @@ const ProfilScreen = () => {
         <Image source={require('../../assets/imageProfil.jpg')}  style={{ width: '100%', height: '100%' , zIndex: 0}}/>
       
       <View style={{width: '80%' ,display: "flex", flexDirection: "row", justifyContent: 'space-between',marginTop:'-10%', marginLeft: '10%'}}>
-        <Text style={{zIndex: 10, fontSize:'5vw'}}>NAME</Text>
+        <Text style={{zIndex: 10, fontSize: 5 }}>NAME</Text>
         <TouchableOpacity>
           <FontAwesomeIcon icon={icon({name: 'pen'})} />
         </TouchableOpacity>
@@ -27,7 +27,7 @@ const ProfilScreen = () => {
           <Text style={{fontWeight: 'bold'}}>Trajet effectués</Text>
           <Text>10 trajets depuis juillet 2022</Text>
           <TouchableOpacity style={{backgroundColor: 'transparent'}}> 
-            <Text style={{fontSize: '2.5vw'}}>Voir l'historique</Text>
+            <Text style={{fontSize: 2.5}}>Voir l'historique</Text>
           </TouchableOpacity>
         </View>
 

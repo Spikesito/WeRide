@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
     text: {
         marginRight: '20%',
         fontWeight: 'bold',
-        fontSize: '5vw',
+        fontSize: 5,
     }
   })
