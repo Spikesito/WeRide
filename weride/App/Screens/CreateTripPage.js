@@ -1,63 +1,156 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
-import { createData } from "../CRUD";
+import React, { useState, useEffect } from "react";
+import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
+import { createData, readData } from "../CRUD";
+import { auth } from "../firebase";
+import { handleAddressChange, handleAddressSelect } from "../Components/ExternalFunction/FuncApiAdd";
 
 const CreateTripPage = ({ navigation }) => {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [departure, setDeparture] = useState("");
-    const [arrival, setArrival] = useState("");
-    const [departureDate, setDepartureDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [departure, setDeparture] = useState("");
+  const [departureSuggestions, setDepartureSuggestions] = useState([]);
+  const [showDepartureSuggestions, setShowDepartureSuggestions] = useState(true);
+  const [arrival, setArrival] = useState("");
+  const [arrivalSuggestions, setArrivalSuggestions] = useState([]);
+  const [showArrivalSuggestions, setShowArrivalSuggestions] = useState(true);
+  const [step, setStep] = useState('');
+  const [stepsList, setStepsList] = useState([]);
+  const [stepsSuggestions, setStepsSuggestions] = useState([]);
+  const [showStepsSuggestions, setShowStepsSuggestions] = useState(true);
 
-    let trips
-    let currentUserData
-    const currentUser = auth.currentUser.uid
 
-    const fetchUserData = async () => {
-        console.log("user: ", currentUser)
-        currentUserData = await readData(`users/${currentUser}`)
-        return currentUserData
+  let trip;
+  let currentUserData;
+  const currentUser = auth.currentUser.uid;
+
+  const fetchUserData = async () => {
+    console.log("user: ", currentUser);
+    currentUserData = await readData(`users/${currentUser}`);
+    return currentUserData;
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const callDepartureChange = (text) => {handleAddressChange(text, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
+
+  const callDepartureSelect = (item) => {handleAddressSelect(item, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
+
+  const callArrivalChange = (text) => {handleAddressChange(text, setArrival, setArrivalSuggestions, setShowArrivalSuggestions);};
+
+  const callArrivalSelect = (item) => {handleAddressSelect(item, setArrival, setArrivalSuggestions, setShowArrivalSuggestions);};
+
+  const callStepsChange = (text) => {handleAddressChange(text, setStep, setStepsSuggestions, setShowStepsSuggestions);};
+
+  const callStepsSelect = (item) => {handleAddressSelect(item, setStep, setStepsSuggestions, setShowStepsSuggestions);};
+
+  const addStepToList = () => {
+    if (step) {
+      setStepsList([...stepsList, { id : stepsList.length, name: step}]);
+      setStep('');
     }
+  };
 
-    useEffect(() => {
-        fetchUserData()
-    }, [])
+  const renderSteps = ({ item }) => (
+    <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+    <Text style={{ paddingVertical: 10 }}>{item.name}</Text>
+    <TouchableOpacity onPress={() => deleteStep(item.id)}>
+      <Text style={{color: "red", marginLeft: 10,}}>Supprimer</Text>
+    </TouchableOpacity>
+    </View>
+  );
 
-    const createTrip = () => {
-        trips = {
-            firstname: currentUserData.firstname,
-            pseudo: currentUserData.pseudo,
-            email: currentUserData.email,
-            phone_number: currentUserData.phone_number,
-            birth_date: currentUserData.birth_date,
-            friends_id: currentUser.friends_id,
-            trips_id: ["trip_id_generated"]
+  const deleteStep = (id) => {
+    setStepsList((prevList) => prevList.filter((item) => item.id !== id));
+  }
+
+  const createTrip = async () => {
+    try {
+        trip = {
+            title: title,
+            description: description,
+            departure_date: departureDate,
+            departure: departure,
+            arrival: arrival,
+            creator: currentUser,
+            participant: [],
+            messaging: "id_de_la_messagerie",
         };
-        // friends.push("ktrZz1ObidcRawmtRikVXoARmrh1")
-        updateData(`users/${currentUser}`, trips); 
-        // navigation.navigate("Home")
-    };
+        createData('trips/', trip);
+        console.log("le trip a été créé", trip);
+        navigation.navigate("Home");
+    }
+    catch (error) {
+        console.error(error);
+    }
+  };
 
-    return (
-        <View>
-            <Text>Titre:</Text>
-            <TextInput value={title} onChangeText={setTitle} />
+  return (
+    <View>
+      <Text>Titre:</Text>
+      <TextInput value={title} onChangeText={setTitle} />
 
-            <Text>Description:</Text>
-            <TextInput value={description} onChangeText={setDescription} />
+      <Text>Description:</Text>
+      <TextInput value={description} onChangeText={setDescription} />
 
-            <Text>Depart:</Text>
-            <TextInput value={departure} onChangeText={setDeparture} />
+      <Text>Date départ (JJ/MM/AAAA):</Text>
+      <TextInput value={departureDate} onChangeText={setDepartureDate} />
 
-            <Text>Arrivée:</Text>
-            <TextInput value={arrival} onChangeText={setArrival} />
+      <Text>Depart:</Text>
+      <TextInput value={departure} onChangeText={callDepartureChange} />
+      {showDepartureSuggestions && (
+        <FlatList
+          data={departureSuggestions}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => callDepartureSelect(item)}>
+              <Text>{item.label}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
 
-            <Text>Date départ (JJ/MM/AAAA):</Text>
-            <TextInput value={departureDate} onChangeText={setDepartureDate} />
+      <Text>Arrivée:</Text>
+      <TextInput value={arrival} onChangeText={callArrivalChange} />
+      {showArrivalSuggestions && (
+        <FlatList
+          data={arrivalSuggestions}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => callArrivalSelect(item)}>
+              <Text>{item.label}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
 
-            <Button title="Create Trip" onPress={createTrip} />
-        </View>
-    );
+      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+      <Text>Étapes:</Text>
+      <TextInput value={step} onChangeText={callStepsChange} style={{width: '80%', paddingLeft: 10}}/>
+      <Button title="Ajouter" onPress={addStepToList} style={{with: '15%'}}/>
+      </View>
+
+      {showStepsSuggestions && (
+        <FlatList style={{marginBottom: 15}}
+          data={stepsSuggestions}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => callStepsSelect(item)}>
+              <Text>{item.label}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
+
+      <Text>Étape du trajet:</Text>
+      <FlatList
+        data={stepsList}
+        renderItem={renderSteps}
+        keyExtractor={(item) => item.id.toString()}
+      />
+
+      <Button title="Create Trip" onPress={createTrip} />
+    </View>
+  );
 };
 
 export default CreateTripPage;

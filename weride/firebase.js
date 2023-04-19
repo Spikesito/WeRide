@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+/*// Import the functions you need from the SDKs you need
 import firebase from "firebase/compat/app";
 import { get, getDatabase, ref, set } from "firebase/database";
 import "firebase/compat/auth";
@@ -45,4 +45,4 @@ export default function writeUserData(userId, firstname, new_pseudo, new_email, 
 }
 
 
-
+*/
