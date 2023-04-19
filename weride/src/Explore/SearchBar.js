@@ -1,8 +1,7 @@
-import React, { useState }  from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Modal } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Modal } from 'react-native';
 
-const SearchScreen = () => {
+const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
   const [recentSearches, setRecentSearches] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -79,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchScreen;
+export default SearchBar;

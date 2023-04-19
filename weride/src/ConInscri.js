@@ -10,6 +10,7 @@ const ConInscri = () => {
      return (
         <View style={styles.container}>
             <Image source={require('./../assets/motoAcceuil.jpg')} style={styles.image} />
+                <Image source={require('./../assets/image.png')} style={{ width: '100%', height: '20%', zIndex: 10, position: 'absolute', marginTop:'70%'}}/>
                 <TouchableOpacity
                     style={styles.buttonConnexion}
                     onPress={() => navigation.navigate("Connexion")}
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
         zIndex: 0
     },
     buttonConnexion: {
+        backgroundColor: 'white',
         position:'absolute',
         marginTop:'125%',
         marginLeft:'10%',
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     buttonInscription: {
+        backgroundColor: '#FFCC33',
         position:'absolute',
         marginTop:'140%', 
         marginLeft:'10%', 
@@ -64,11 +67,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     textConnexion:{
-        color: 'white', 
         textAlign:'center',         
     },
     textInscription:{
-        color: 'white', 
         textAlign:'center',   
     }
 })
