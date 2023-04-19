@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Video from 'react-native-video';
+// import Video from 'react-native-video';
 
 const ConInscri = () => {
     const navigation = useNavigation();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import FilterScreen from './FilterScreen';
+import FilterScreen from '../Search/FilterScreen';
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   recentSearchesTitle: {
-    fontSize: '4vw',
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
   },
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     maxHeight: 300,
   },
   recentSearch: {
-    fontSize: '4vw',
+    fontSize: 15,
     marginBottom: 4,
   },
   moreCriteriaButtonContainer: {
