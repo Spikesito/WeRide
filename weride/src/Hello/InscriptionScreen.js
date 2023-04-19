@@ -8,43 +8,43 @@ import App from '../../App';
 
 const InscriptionScreen = () => {
   const navigation = useNavigation();
-return (
-  <View style={styles.container}>
-    <Text style={styles.title}>Inscription</Text>
-    <TextInput
-      style={styles.input}
-      placeholder="NOM Prénom"
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Nom d'utilisation"
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Date de naissance"
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Adresse mail"
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Mot de passe"
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Inscription</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="NOM Prénom"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Nom d'utilisation"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Date de naissance"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Adresse mail"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Mot de passe"
       // value={password}
       // secureTextEntry={true}
       // onChangeText={handlePasswordChange}
-    />
-    <TouchableOpacity style={styles.button} name="Inscription" onPress={() => navigation.navigate("Tabs")}>
-      <Text style={styles.buttonText}>S'inscrire</Text>
-    </TouchableOpacity>
-    <View style={styles.bottomContainer}>
-      <Text style={styles.bottomText}>Vous avez un compte ? </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Connexion")}>
-        <Text style={styles.bottomButtonText}>Se connecter</Text>
+      />
+      <TouchableOpacity style={styles.button} name="Inscription" onPress={() => navigation.navigate("Tabs")}>
+        <Text style={styles.buttonText}>S'inscrire</Text>
       </TouchableOpacity>
+      <View style={styles.bottomContainer}>
+        <Text style={styles.bottomText}>Vous avez un compte ? </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Connexion")}>
+          <Text style={styles.bottomButtonText}>Se connecter</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </View>
-);
+  );
 };
 
 export default InscriptionScreen

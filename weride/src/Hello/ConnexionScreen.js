@@ -9,36 +9,36 @@ import App from '../../App';
 
 const ConnexionScreen = () => {
   const navigation = useNavigation();
-return (
-  <View style={styles.container}>
-    <Text style={styles.title}>S'identifier</Text>
-    <TextInput
-      style={styles.input}
-      placeholder="Email"
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>S'identifier</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
       // value={email}
       // onChangeText={handleEmailChange}
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Mot de passe"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Mot de passe"
       // value={password}
       // secureTextEntry={true}
       // onChangeText={handlePasswordChange}
-    />
-    <TouchableOpacity style={styles.button} name="Connexion" onPress={() => navigation.navigate("Tabs")}>
-      <Text style={styles.buttonText}>Se connecter</Text>
-    </TouchableOpacity>
-    <TouchableOpacity>
-      <Text style={styles.textLose}>Mot de passe oublié</Text>
-    </TouchableOpacity>
-    <View style={styles.bottomContainer}>
-      <Text style={styles.bottomText}>Vous n'avez pas de compte ?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Inscription")}>
-        <Text style={styles.bottomButtonText}>S'inscrire</Text>
+      />
+      <TouchableOpacity style={styles.button} name="Connexion" onPress={() => navigation.navigate("Tabs")}>
+        <Text style={styles.buttonText}>Se connecter</Text>
       </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.textLose}>Mot de passe oublié</Text>
+      </TouchableOpacity>
+      <View style={styles.bottomContainer}>
+        <Text style={styles.bottomText}>Vous n'avez pas de compte ?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Inscription")}>
+          <Text style={styles.bottomButtonText}>S'inscrire</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </View>
-);
+  );
 };
 
 export default ConnexionScreen
