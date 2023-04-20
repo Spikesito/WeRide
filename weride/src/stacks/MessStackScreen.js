@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Header } from 'react-native-elements';
 import MessScreen from "../screens/MessScreen";
-import MessInit from "../screens/MessInit";
+import MessInit from "../Messagerie/MessInit";
 
 const MessStackScreen = () => {
   const MessStack = createNativeStackNavigator();

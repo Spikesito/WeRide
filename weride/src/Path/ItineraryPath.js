@@ -24,7 +24,7 @@ const ItineraryPath = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/imageProfil.jpg')} style={{ width: '120%', height: '50%', marginTop: '-10%' }} />
+      <Image source={require('../../assets/lyon2.jpg')} style={{ width: '120%', height: '50%', marginTop: '-12%' }} />
       <Text style={styles.title}>Itinéraire</Text>
       <View style={styles.inputContainer}>
         <FontAwesomeIcon style={styles.icon} icon={faMapMarkerAlt} />
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 5,
+    fontSize: 16,
     fontWeight: 'bold',
     marginTop: '5%',
     marginLeft: '-70%',

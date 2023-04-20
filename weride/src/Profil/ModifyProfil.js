@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet, TextInput, ScrollView } from "react-native";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const ProfilScreen = () => {
     const navigation = useNavigation();
@@ -28,8 +28,8 @@ const ProfilScreen = () => {
     };
 
     return (
-        <ScrollView style={styles.container}>
-            <Image source={require('../../assets/Emile.png')} style={{ width: '100%', height: '75%', zIndex: 0 }} />
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <Image source={require('../../assets/acteur/Emile.png')} style={styles.image} />
 
             <View style={styles.containerHead}>
                 <TextInput
@@ -39,7 +39,7 @@ const ProfilScreen = () => {
                     placeholder="SEGURET Emile"
                 />
                 <TouchableOpacity onPress={() => navigation.navigate('Profil')}>
-                    <FontAwesomeIcon icon={icon({ name: 'pen' })} />
+                    <FontAwesomeIcon icon={faCheck} style={{color: 'white'}}/>
                 </TouchableOpacity>
             </View>
 
@@ -82,7 +82,7 @@ const ProfilScreen = () => {
                     />
                 </View>
 
-                <View style={styles.body}>
+                <View style={styles.body1}>
                     <Text style={{ fontWeight: 'bold' }}>Trajet effectués</Text>
                     <Text>10 trajets depuis juillet 2022</Text>
                     <TouchableOpacity style={{ backgroundColor: 'transparent' }}>
@@ -99,6 +99,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    contentContainer: {
+        paddingBottom: 20, // Add some padding at the bottom
+    },
+    image: {
+        width: '100%',
+        height: 400, // Change this to a fixed height
+        resizeMode: 'cover',
+    },
     containerHead: {
         width: '80%',
         display: "flex",
@@ -114,10 +122,13 @@ const styles = StyleSheet.create({
     body: {
         marginTop: '5%'
     },
+    body1: {
+        marginTop: '-8%',
+    },
     input: {
-        fontSize: 20,
-        width: '90%',
-        height: '70%',
+        fontSize: 16,
+        width: '70%',
+        height: '80%',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 3,
@@ -128,7 +139,7 @@ const styles = StyleSheet.create({
     input2: {
         fontSize: 16,
         width: '90%',
-        height: '70%',
+        height: '12%',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 3,
@@ -138,13 +149,15 @@ const styles = StyleSheet.create({
     textArea: {
         marginTop: '3%',
         width: '90%',
+        borderWidth: 1,
+        borderColor: '#ccc',
     },
-    text:{
+    text: {
         marginTop: '2%',
     },
     VoirHistorique: {
-        fontSize: 12, 
-        marginLeft: '3%', 
+        fontSize: 12,
+        marginLeft: '3%',
         marginTop: '1%',
         marginBottom: '5%'
     },

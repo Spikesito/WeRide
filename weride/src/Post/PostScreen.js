@@ -2,8 +2,6 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import HomeScreenEvent from '../Home/HomeScreenEvent';
-import HomeScreenActu from '../Home/HomeScreenActu';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV, faBookmark, faHeart, faComment, faShare, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,12 +15,12 @@ const HomeScreen = ({ userImage, userName }) => {
         <FontAwesomeIcon icon={faArrowLeft} size={24} color="#000" />
       </TouchableOpacity>
       <View style={styles.userProfileContainer}>
-        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.userImage} />
-        <View style={styles.nameContainer}>
+        <Image source={require('../../assets/Gabby.png')} style={styles.userImage} />
+        <TouchableOpacity style={styles.nameContainer} onPress={() => navigation.navigate('OtherProfil')}>
           <Text style={styles.userName}>{userName}</Text>
-          <Text style={styles.subText}>Nom d'utilisateur</Text>
-          <Text style={styles.subText}>26 janvier 2023</Text>
-        </View>
+          <Text style={styles.subText}> THOYER Gabby</Text>
+          <Text style={styles.subText}>05 février 2023</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.followButton}>
           <Text style={styles.followButtonText}>Suivre</Text>
         </TouchableOpacity>
@@ -30,11 +28,11 @@ const HomeScreen = ({ userImage, userName }) => {
           <FontAwesomeIcon icon={faEllipsisV} size={24} color="#999" />
         </TouchableOpacity>
       </View>
-      <Text style={styles.title}>Titre de balade</Text>
+      <Text style={styles.title}>Rassemblement Lyon 3ème</Text>
       <View style={styles.infoContainer}>
         <View style={styles.infoSection}>
           <Text style={styles.infoLabel}>Distance</Text>
-          <Text style={styles.infoValue}>25 km</Text>
+          <Text style={styles.infoValue}>30 km</Text>
         </View>
         <View style={styles.verticalLine} />
         <View style={styles.infoSection}>
@@ -44,11 +42,11 @@ const HomeScreen = ({ userImage, userName }) => {
         <View style={styles.verticalLine} />
         <View style={styles.infoSection}>
           <Text style={styles.infoLabel}>Note du trajet</Text>
-          <Text style={styles.infoValue}>8/10</Text>
+          <Text style={styles.infoValue}>9/10</Text>
         </View>
       </View>
       <View style={styles.imageContainer}>
-        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.mainImage} />
+        <Image source={require('../../assets/imageFond/PostGabby.jpeg')} style={styles.mainImage} />
         <TouchableOpacity style={styles.saveButton}>
           <FontAwesomeIcon icon={faBookmark} size={20} color="#000" />
         </TouchableOpacity>
@@ -69,7 +67,7 @@ const HomeScreen = ({ userImage, userName }) => {
       </Text>
       <Text style={styles.participantsText}>Nombre de participants : 10</Text>
       <View style={styles.participantImages}>
-        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
+        <Image source={require('../../assets/acteur/Emile.png')} style={styles.participantImage} />
         <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
         <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
       </View>

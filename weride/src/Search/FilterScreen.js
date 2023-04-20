@@ -33,7 +33,7 @@ const FilterScreen = () => {
                     onChangeText={setLocation}
                 />
             </View>
-            <View style={{marginBottom: '5%',}}>
+            <View style={styles.calendar}>
                 <Text style={styles.title}>Date de départ</Text>
                 <Calendar
                     onDayPress={handleDayPress}
@@ -63,7 +63,7 @@ const FilterScreen = () => {
             </View>
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.DeletebuttonBottom} onPress={() => navigation.navigate('Search')}>
-                    <Text style={styles.buttonTextBottom}>Effacer</Text>
+                    <Text style={styles.buttonTextBottomDel}>Effacer</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.SearchbuttonBottom} onPress={() => navigation.navigate('Result')}>
                     <Text style={styles.buttonTextBottom}>Rechercher (1250)</Text>
@@ -80,19 +80,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingHorizontal: 16,
         paddingTop: 24,
+        marginTop: 40,
     },
-    locationContainer: {
-        marginBottom: 16,
-    },
+    // locationContainer: {
+    //     marginBottom: 16,
+    // },
     title: {
-        fontSize: '4vw',
+        fontSize: 16,
         marginRight: 16,
         marginBottom: '3%',
     },
     input: {
-        fontSize: '4vw',
+        fontSize: 16,
         width: '90%',
-        height: '80%',
+        height: '20%',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 3,
@@ -101,8 +102,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: '5%',
         alignItems: 'center',
+        marginTop: '15%',
     },
     SearchbuttonBottom: {
         backgroundColor: '#FFCC33',
@@ -118,7 +119,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     button: {
-        padding: 5,
+        paddingHorizontal: 30,
+        paddingVertical: 6,
         backgroundColor: '#eee',
         borderRadius: 5,
         margin: 10,
@@ -130,43 +132,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#333',
     },
-
+    calendar: {
+        marginTop: '-10%',
+        marginBottom: '6%',
+    },
+    buttonTextBottomDel: {
+        textDecorationLine: "underline",
+    },
 });
-
-// const FilterScreen = () => {
-//   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
-
-//   const handleDayPress = day => {
-//     setSelectedDate(day.dateString);
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.title}>Date de départ</Text>
-//       <Calendar
-//         onDayPress={handleDayPress}
-//         markedDates={{ [selectedDate]: { selected: true } }}
-//       />
-//       <Text style={styles.selectedDateText}>Date sélectionnée: {selectedDate}</Text>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   title: {
-//     fontSize: 24,
-//     fontWeight: 'bold',
-//     marginBottom: 20,
-//   },
-//   selectedDateText: {
-//     fontSize: 16,
-//     marginTop: 20,
-//   },
-// });
 
 export default FilterScreen;

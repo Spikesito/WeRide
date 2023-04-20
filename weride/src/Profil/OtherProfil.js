@@ -11,9 +11,9 @@ const OtherProfil = () => {
       <Image source={require('../../assets/Gabby.png')} style={{ width: '100%', height: '50%', zIndex: 0 }} />
 
       <View style={styles.containerHead}>
-        <Text style={{color:'white', fontSize: '5vw' }}>THOYER Gabby</Text>
+        <Text style={styles.name}>THOYER Gabby</Text>
         <TouchableOpacity onPress={() => navigation.navigate('ModifProfil')}>
-          <FontAwesomeIcon icon={icon({ name: 'pen' })} />
+          {/* <FontAwesomeIcon icon={icon({ name: 'pen' })} /> */}
         </TouchableOpacity>
       </View>
 
@@ -21,19 +21,19 @@ const OtherProfil = () => {
         <Text>A défaut d'être un super motard, j'excelle en dev notamment pour la création d'application mobile !</Text>
 
         <View style={styles.body}>
-          <Text style={{ fontWeight: 'bold' }}>Moto</Text>
+          <Text style={styles.title}>Moto</Text>
           <Text>Yamaha MT 07</Text>
         </View>
 
         <View style={styles.body}>
-          <Text style={{ fontWeight: 'bold' }}>Trajet effectués</Text>
+          <Text style={styles.title}>Trajet effectués</Text>
           <Text>10 trajets depuis juillet 2022</Text>
           <TouchableOpacity style={{ backgroundColor: 'transparent' }}>
             <Text style={{ fontSize: 12, marginLeft: '2%', marginTop: '1%' }}>Voir l'historique</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.buttonAddFriend}>
-            <Text>Ajouter en ami</Text>
+        <TouchableOpacity style={styles.buttonAddFriend} onPress={() => console.log("Friend Add")}>
+            <Text style={styles.textButton}>Ajouter en ami</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -66,11 +66,23 @@ const styles = StyleSheet.create({
   buttonAddFriend: {
     backgroundColor: '#FFCC33',
     borderRadius: 5,
-    padding: 12,
-    width: '100%',
-    height: '7%',
+    width: '80%',
+    height: '12%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 10,
-  }
+    marginLeft: 25,
+    marginTop: 100,
+  },
+  textButton: {
+    color: 'black',
+    fontSize: 16,
+  },
+  name:{
+    color:'white', 
+    fontSize: 20,
+  },
+  title:{
+    fontWeight: 'bold', 
+    fontSize: 16 
+  },
 })

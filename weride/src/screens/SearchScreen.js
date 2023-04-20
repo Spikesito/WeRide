@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import FilterScreen from '../Search/FilterScreen';
 import { useNavigation } from "@react-navigation/native";
-
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faEllipsisV,
+  faBookmark,
+  faHeart,
+  faComment,
+  faShare,
+  faUsers,
+  faCog,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SearchBar = () => {
   const navigation = useNavigation();
@@ -18,6 +27,14 @@ const SearchBar = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <FontAwesomeIcon icon={faUsers} size={24} color="#000" />
+        <Image
+          source={require("../../assets/LOGO_WE_RIDE.png")}
+          style={styles.headerTitle}
+        />
+        <FontAwesomeIcon icon={faCog} size={24} color="#000" />
+      </View>
       <TextInput
         style={styles.input}
         placeholder="Recherche"
@@ -36,7 +53,7 @@ const SearchBar = () => {
         </ScrollView>
       </View>
       <View style={styles.moreCriteriaButtonContainer}>
-        <TouchableOpacity style={styles.moreCriteriaButton}  onPress={() => navigation.navigate('Filter')}>
+        <TouchableOpacity style={styles.moreCriteriaButton} onPress={() => navigation.navigate('Filter')}>
           <Text style={styles.moreCriteriaButtonText}>Plus de critères</Text>
         </TouchableOpacity>
       </View>
@@ -57,14 +74,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 16,
-    paddingTop: 24,
   },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 8,
-    marginBottom: 16,
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 30,
+  },
+  headerTitle: {
+    paddingLeft: 9,
+    width: 180,
+    height: 40,
   },
   input: {
     borderWidth: 2,
@@ -83,7 +111,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   recentSearchesList: {
-    maxHeight: 300,
+    maxHeight: 500,
   },
   recentSearch: {
     fontSize: 15,
@@ -97,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   moreCriteriaButtonText: {
-    fontSize: '3.5vw',
+    fontSize: 20,
     color: 'black',
   },
 });

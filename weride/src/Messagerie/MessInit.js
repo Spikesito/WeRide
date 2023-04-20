@@ -35,14 +35,14 @@ const MessScreen = () => {
             <TouchableOpacity
               style={styles.plusButton}
               onPress={() => navigation.navigate('Profiluser')}>
-              <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.photo}/>
+              <Image source={require('../../assets/acteur/Christophe.png')} style={styles.photo}/>
             </TouchableOpacity>
           </View>
           <ScrollView>
             {/* Ici, mapper les messages à partir de liste de messages */}
             <View style={styles.message}>
               <View style={styles.senderPhotoContainer}>
-              <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.senderPhoto}/>
+              <Image source={require('../../assets/acteur/Christophe.png')} style={styles.senderPhoto}/>
               </View>
               <View style={styles.senderMessageContainer}>
                 <Text style={styles.senderMessageText}>Hey, comment ça va ?</Text>

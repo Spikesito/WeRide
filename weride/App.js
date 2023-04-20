@@ -6,8 +6,6 @@ import Tabs from "./src/Tab";
 import ConInscri from "./src/ConInscri";
 import ConnexionScreen from "./src/Hello/ConnexionScreen";
 import InscriptionScreen from "./src/Hello/InscriptionScreen";
-import NewPath from "./src/Path/NewPath";
-import ItineraryPath from "./src/Path/ItineraryPath";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 // export default function App() {

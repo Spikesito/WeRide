@@ -5,6 +5,7 @@ import { Header } from 'react-native-elements';
 import MyPathScreen from "../screens/MyPathScreen";
 import NewPath from "../Path/NewPath";
 import ItineraryPath from "../Path/ItineraryPath";
+import MyPath from "../Path/MyPath";
 
 const MyPathStackScreen = () => {
   const MyPathStack = createNativeStackNavigator();
@@ -34,6 +35,14 @@ const MyPathStackScreen = () => {
         component={ItineraryPath}
         options={{
           title: '',
+        }}
+      />
+      <MyPathStack.Screen
+        name="MyPath"
+        component={MyPath}
+        options={{
+          title: '',
+          headerShown: false,
         }}
       />
     </MyPathStack.Navigator>

@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Header } from "react-native-elements";
 import HomeScreen from "../screens/HomeScreen";
 import { setStatusBarBackgroundColor } from "expo-status-bar";
-import PostScreen from "../screens/PostScreen";
+import PostScreen from "../Post/PostScreen";
+import OtherProfil from "../Profil/OtherProfil";
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
@@ -28,6 +29,14 @@ const HomeStackScreen = () => {
         component={PostScreen}
         options={{
           title: "",
+        }}
+      />
+      <HomeStack.Screen
+        name="OtherProfil"
+        component={OtherProfil}
+        options={{
+          title: "",
+          headerShown: false,
         }}
       />
     </HomeStack.Navigator>
