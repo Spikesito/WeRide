@@ -8,6 +8,11 @@ export const createData = (path, data) => {
   return set(newRef, data);
 };
 
+export const createNewTrip = (path, data) => {
+  const reference = ref(db, path);
+  return set(reference, data);
+}
+
 export const createNewUser = (path, data) => {
   const reference = ref(db, path);
   return set(reference, data);
