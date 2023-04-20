@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textLose: {
-    fontSize: '2.7vw',
+    fontSize: 10,
     paddingTop: '5%'
   },
   bottomContainer: {
@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     marginRight: 10,
-    fontSize: '2.5vw',
+    fontSize: 10,
   },
 
   bottomButtonText: {
     color: 'blue',
-    fontSize: '2.5vw',
+    fontSize: 10,
     fontWeight: 'bold',
   },
 });

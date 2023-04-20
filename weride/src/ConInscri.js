@@ -8,7 +8,7 @@ const ConInscri = () => {
     return (
         <View style={styles.container}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Image source={require('./../assets/motoAcceuil.jpg')} style={styles.image} />
+                <Image source={require('./../assets/accueilImage.jpg')} style={styles.image} />
                 <Image
                     source={require('./../assets/image.png')}
                     style={{ width: '90%', height: '20%', zIndex: 10, position: 'absolute' }}
