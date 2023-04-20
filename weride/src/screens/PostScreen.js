@@ -1,18 +1,21 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import HomeScreenEvent from '../Home/HomeScreenEvent';
 import HomeScreenActu from '../Home/HomeScreenActu';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faEllipsisV, faBookmark, faHeart, faComment, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faBookmark, faHeart, faComment, faShare, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const HomeScreen = ({ userImage, userName }) => {
   const navigation = useNavigation();
   const Home = createBottomTabNavigator();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <FontAwesomeIcon icon={faArrowLeft} size={24} color="#000" />
+      </TouchableOpacity>
       <View style={styles.userProfileContainer}>
         <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.userImage} />
         <View style={styles.nameContainer}>
@@ -61,7 +64,16 @@ const HomeScreen = ({ userImage, userName }) => {
           <FontAwesomeIcon icon={faShare} size={20} color="#000" />
         </TouchableOpacity>
       </View>
-    </View>
+      <Text style={styles.loremIpsumText}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </Text>
+      <Text style={styles.participantsText}>Nombre de participants : 10</Text>
+      <View style={styles.participantImages}>
+        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
+        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
+        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
+      </View>
+      </ScrollView>
   );
 };
 
@@ -162,5 +174,32 @@ const styles = StyleSheet.create({
   followButtonText: {
     color: '#FFF',
     fontSize: 14,
+  },
+  backButton: {
+    alignSelf: 'flex-start',
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  loremIpsumText: {
+    marginTop: 20,
+    fontSize: 14,
+    textAlign: 'justify',
+  },
+  participantsText: {
+    marginTop: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  participantImages: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  participantImage: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    marginRight: 5,
   },
 });

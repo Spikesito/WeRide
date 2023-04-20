@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     marginRight: 10,
-    fontSize: 2.5,
+    fontSize: 15,
   },
 
   bottomButtonText: {
     color: 'blue',
-    fontSize: 2.5,
+    fontSize: 15,
     fontWeight: 'bold',
   },
 });

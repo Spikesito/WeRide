@@ -1,48 +1,58 @@
 import React from "react";
-import { View, Text, Button, Image, TouchableOpacity} from "react-native";
+import { View, Text, Button, Image, TouchableOpacity, ScrollView, StyleSheet} from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const ProfilScreen = () => {
   return (
-    <View>
+    <ScrollView>
         <Image source={require('../../assets/imageProfil.jpg')}  style={{ width: '100%', height: '100%' , zIndex: 0}}/>
       
       <View style={{width: '80%' ,display: "flex", flexDirection: "row", justifyContent: 'space-between',marginTop:'-10%', marginLeft: '10%'}}>
-        <Text style={{zIndex: 10, fontSize: 5 }}>NAME</Text>
+        <Text style={{zIndex: 10, fontSize: 20 }}>NAME</Text>
         <TouchableOpacity>
           <FontAwesomeIcon icon={icon({name: 'pen'})} />
         </TouchableOpacity>
       </View>
       
-      <View style={{marginTop: '5%', marginLeft: '5%'}}>
+      <View style={{marginTop: '10%', marginLeft: '5%'}}>
         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque eget nibh vitae vel ante cursus tincidunt.</Text>
         
-        <View style={{marginTop: '3%'}}>
-          <Text style={{fontWeight: 'bold'}}>Moto</Text>
+        <View style={styles.espaceAll}>
+          <Text style={styles.titlePart}>Moto</Text>
           <Text>Tenere 700</Text>
         </View>
         
-        <View style={{marginTop: '3%'}}>
-          <Text style={{fontWeight: 'bold'}}>Trajet effectués</Text>
+        <View style={styles.espaceAll}>
+          <Text style={styles.titlePart}>Trajet effectués</Text>
           <Text>10 trajets depuis juillet 2022</Text>
           <TouchableOpacity style={{backgroundColor: 'transparent'}}> 
-            <Text style={{fontSize: 2.5}}>Voir l'historique</Text>
+            <Text style={{fontSize: 12, marginLeft: '3%', marginTop: '1%'}}>Voir l'historique</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{marginTop: '3%'}}>
-          <Text style={{fontWeight: 'bold'}}>Équipement</Text>
+        <View style={styles.espaceAll}>
+          <Text style={styles.titlePart}>Équipement</Text>
           <Text>Intercom Freecom 4+</Text>
         </View>
 
-        <View style={{marginTop: '3%'}}>
-          <Text style={{fontWeight: 'bold'}}>Types de trajets</Text>
+        <View style={styles.espaceAll}>
+          <Text style={styles.titlePart}>Types de trajets</Text>
           <Text>Route</Text>
           </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default ProfilScreen;
+
+const styles = StyleSheet.create({
+  titlePart: {
+    fontWeight: 'bold', 
+    fontSize: 16,
+  },
+  espaceAll: {
+    marginTop: '3%',
+  }   
+});

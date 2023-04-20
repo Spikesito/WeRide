@@ -55,7 +55,7 @@ const MessScreen = () => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.discussionItem}
-      onPress={() => navigation.navigate('Chat', { discussionId: item.id })}>
+      onPress={() => navigation.navigate('Message', { discussionId: item.id })}>
       <Image source={{ uri: item.avatar }} style={styles.avatar} />
       <View style={styles.discussionContent}>
         <Text style={styles.name}>{item.name}</Text>
