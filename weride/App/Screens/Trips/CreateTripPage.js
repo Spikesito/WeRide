@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { createData } from "../CRUD";
+import { createData } from "../../CRUD";
+import { auth } from "../../firebase";
 
 const CreateTripPage = ({ navigation }) => {
     const [title, setTitle] = useState("");
