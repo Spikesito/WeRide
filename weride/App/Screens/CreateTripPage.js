@@ -52,6 +52,7 @@ const CreateTripPage = ({ navigation }) => {
     if (step) {
       setStepsList([...stepsList, { id : stepsList.length, name: step}]);
       setStep('');
+      setShowStepsSuggestions(false)
     }
   };
 
@@ -64,7 +65,7 @@ const CreateTripPage = ({ navigation }) => {
     </View>
   );
 
-  const deleteStep = (id) => {
+const deleteStep = (id) => {
     setStepsList((prevList) => prevList.filter((item) => item.id !== id));
   }
 
