@@ -5,6 +5,7 @@ import { Header } from "react-native-elements";
 import HomeScreen from "../screens/HomeScreen";
 import PostScreen from "../screens/PostScreen";
 import MesAmis from "../screens/MesAmis";
+import Slider from "../screens/Slider";
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
@@ -15,6 +16,14 @@ const HomeStackScreen = () => {
         header: (props) => <Header {...props} />,
       }}
     >
+      <HomeStack.Screen
+        name="Slider"
+        component={Slider}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
       <HomeStack.Screen
         name="WeRide"
         component={HomeScreen}
