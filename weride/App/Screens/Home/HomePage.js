@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from "react-native";
-import { readData } from "../CRUD";
-import { auth } from "../firebase";
+import { readData } from "../../CRUD";
+import { auth } from "../../firebase";
 
 const HomePage = ({ navigation }) => {
   const [trips, setTrips] = useState([]);
@@ -44,7 +44,7 @@ const HomePage = ({ navigation }) => {
         userTrips.push(...friendTrips);
       }
     }
-    const currentUserTrips = await readData(`trips/${currentUser.id}`);
+    const currentUserTrips = await readData(`trips/${currentUser}`);
     if (currentUserTrips) {
       userTrips.push(...currentUserTrips);
     }
@@ -71,9 +71,13 @@ const HomePage = ({ navigation }) => {
       <Text>Upcoming Trips: {currentUser}</Text>
       {trips.map((trip) => (
         <Text key={trip.id}>{trip.name}</Text>
-        ))}
+      ))}
       <Button title="Create Trip" onPress={() => navigation.navigate("CreateTrip")} />
-      <Button title="Add Friend" onPress={() => navigation.navigate("AddFriends")} />
+      {/* <Button title="Add Friend" onPress={() => navigation.navigate("AddFriends")} /> */}
+      <Button title="Discover Trips" onPress={() => navigation.navigate("Discover")} />
+      <Button title="Friends Trips" onPress={() => navigation.navigate("FriendsTrips")} />
+      <Button title="Profile Page" onPress={() => navigation.navigate("Profile")} />
+
 
       <Button title="Log Out" onPress={handleLogOut} />
     </View>
