@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -6,69 +6,75 @@ import { useNavigation } from "@react-navigation/native";
 // import Video from 'react-native-video';
 
 const ConInscri = () => {
-    const navigation = useNavigation();
-     return (
-        <View style={styles.container}>
-            <Image source={require('./../assets/motoAcceuil.jpg')} style={styles.image} />
-                <TouchableOpacity
-                    style={styles.buttonConnexion}
-                    onPress={() => navigation.navigate("Connexion")}
-                    // onPress={() => console.log("Connexion OK")}
-                    >
-                    <Text style= {styles.textConnexion}>Se connecter</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.buttonInscription}
-                    onPress={() => navigation.navigate("Inscription")}
-                    // onPress={() => console.log("Inscription OK")}
-                    >
-                    <Text style= {styles.textInscription}>S'inscrire</Text>
-                </TouchableOpacity>
-        </View>
-  )
-}
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require("./../assets/motoAcceuil.jpg")}
+        style={styles.image}
+      />
+      <TouchableOpacity
+        style={styles.buttonConnexion}
+        onPress={() => navigation.navigate("Connexion")}
+        // onPress={() => console.log("Connexion OK")}
+      >
+        <Text style={styles.textConnexion}>Se connecter</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonInscription}
+        onPress={() => navigation.navigate("Inscription")}
+        // onPress={() => console.log("Inscription OK")}
+      >
+        <Text style={styles.textInscription}>S'inscrire</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
-export default ConInscri
+export default ConInscri;
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%', 
-        height: '100%', 
-        position: 'relative' 
-    },
-    image: {
-        width: '100%', 
-        height: '100%',
-        zIndex: 0
-    },
-    buttonConnexion: {
-        position:'absolute',
-        marginTop:'125%',
-        marginLeft:'10%',
-        borderWidth: 1, 
-        borderColor: 'white', 
-        borderRadius: 10, 
-        paddingVertical: 10, 
-        paddingHorizontal: 105, 
-        marginBottom: 10,
-    },
-    buttonInscription: {
-        position:'absolute',
-        marginTop:'140%', 
-        marginLeft:'10%', 
-        borderWidth: 1, 
-        borderColor: 'white',
-        borderRadius: 10, 
-        paddingVertical: 10, 
-        paddingHorizontal: 117, 
-        marginBottom: 10,
-    },
-    textConnexion:{
-        color: 'white', 
-        textAlign:'center',         
-    },
-    textInscription:{
-        color: 'white', 
-        textAlign:'center',   
-    }
-})
+  container: {
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    justifyContent: "center", // Ajouté pour centrer les éléments
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    zIndex: 0,
+    position: "absolute", // Ajouté pour positionner l'image en arrière-plan
+  },
+  buttonConnexion: {
+    borderWidth: 1,
+    borderColor: "white",
+    backgroundColor: "white",
+    borderRadius: 10,
+    marginTop: 600,
+    paddingVertical: 10,
+    paddingHorizontal: 20, // Modifié paddingHorizontal
+    marginBottom: 10,
+    alignSelf: "center",
+    width: 280, // Modifié la largeur
+  },
+  buttonInscription: {
+    borderWidth: 1,
+    borderColor: "#FFCC33",
+    backgroundColor: "#FFCC33",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginBottom: 10,
+    alignSelf: "center",
+    width: 280, // Largeur fixe pour le bouton
+  },
+  textConnexion: {
+    color: "black",
+    textAlign: "center",
+  },
+  textInscription: {
+    color: "black",
+    textAlign: "center",
+  },
+});

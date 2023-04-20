@@ -23,7 +23,7 @@ import {
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
 
-const HomeScreen = ({ userImage, userName }) => {
+const MesAmis = ({ userImage, userName }) => {
   const navigation = useNavigation();
   const Home = createBottomTabNavigator();
 
@@ -38,14 +38,14 @@ const HomeScreen = ({ userImage, userName }) => {
         <FontAwesomeIcon icon={faCog} size={24} color="#000" />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.friendButton}
-          onPress={() => navigation.navigate("MesAmis")}
-        >
+        <TouchableOpacity style={[styles.friendButton, styles.activeButton]}>
           <Text style={styles.buttonText}>Mes amis</Text>
         </TouchableOpacity>
         <View style={styles.buttonDivider} />
-        <TouchableOpacity style={styles.discoverButton}>
+        <TouchableOpacity
+          style={styles.discoverButton}
+          onPress={() => navigation.navigate("WeRide")}
+        >
           <Text style={styles.buttonText}>Découvrir</Text>
         </TouchableOpacity>
       </View>
@@ -59,9 +59,7 @@ const HomeScreen = ({ userImage, userName }) => {
           <Text style={styles.subText}>Nom d'utilisateur</Text>
           <Text style={styles.subText}>26 janvier 2023</Text>
         </View>
-        <TouchableOpacity style={styles.followButton}>
-          <Text style={styles.followButtonText}>Suivre</Text>
-        </TouchableOpacity>
+
         <TouchableOpacity style={styles.optionsButton}>
           <FontAwesomeIcon icon={faEllipsisV} size={24} color="#999" />
         </TouchableOpacity>
@@ -109,7 +107,7 @@ const HomeScreen = ({ userImage, userName }) => {
   );
 };
 
-export default HomeScreen;
+export default MesAmis;
 
 const styles = StyleSheet.create({
   container: {
@@ -210,13 +208,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     marginRight: 10,
   },
-  followButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginRight: 10,
-    backgroundColor: "#2196F3",
-    borderRadius: 5,
-  },
+
   followButtonText: {
     color: "#FFF",
     fontSize: 14,
@@ -231,11 +223,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
   },
+  activeButton: {
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+  },
   discoverButton: {
     paddingHorizontal: 15,
     paddingVertical: 5,
-    borderBottomWidth: 2, // Ajoutez cette ligne
-    borderBottomColor: "black", // Ajoutez cette ligne
   },
   buttonText: {
     fontSize: 16,

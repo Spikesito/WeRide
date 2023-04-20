@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Header } from "react-native-elements";
 import HomeScreen from "../screens/HomeScreen";
 import PostScreen from "../screens/PostScreen";
+import MesAmis from "../screens/MesAmis";
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
@@ -27,6 +28,14 @@ const HomeStackScreen = () => {
         component={PostScreen}
         options={{
           title: "",
+        }}
+      />
+      <HomeStack.Screen
+        name="MesAmis"
+        component={MesAmis}
+        options={{
+          title: "",
+          headerShown: false,
         }}
       />
     </HomeStack.Navigator>
