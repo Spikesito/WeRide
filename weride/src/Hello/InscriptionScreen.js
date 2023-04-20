@@ -34,7 +34,7 @@ const InscriptionScreen = () => {
       // secureTextEntry={true}
       // onChangeText={handlePasswordChange}
       />
-      <TouchableOpacity style={styles.button} name="Inscription" onPress={() => navigation.navigate("Tabs")}>
+      <TouchableOpacity style={styles.button} name="Inscription" onPress={() => navigation.navigate("Slider")}>
         <Text style={styles.buttonText}>S'inscrire</Text>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>

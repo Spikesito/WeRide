@@ -6,6 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import { setStatusBarBackgroundColor } from "expo-status-bar";
 import PostScreen from "../Post/PostScreen";
 import OtherProfil from "../Profil/OtherProfil";
+import MesAmis from "../Post/MesAmis";
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
@@ -29,6 +30,14 @@ const HomeStackScreen = () => {
         component={PostScreen}
         options={{
           title: "",
+        }}
+      />
+      <HomeStack.Screen
+        name="MesAmis"
+        component={MesAmis}
+        options={{
+          title: "",
+          headerShown: false,
         }}
       />
       <HomeStack.Screen

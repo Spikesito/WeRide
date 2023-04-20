@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 import FilterScreen from '../Search/FilterScreen';
+import { Input } from 'react-native-elements';
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -12,6 +13,7 @@ import {
   faUsers,
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
+import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 
 const SearchBar = () => {
   const navigation = useNavigation();
@@ -35,12 +37,15 @@ const SearchBar = () => {
         />
         <FontAwesomeIcon icon={faCog} size={24} color="#000" />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Recherche"
+      <Input
+        containerStyle={styles.searchBarContainer}
+        inputContainerStyle={styles.searchBar}
+        placeholder="Rechercher"
         value={searchText}
         onChangeText={setSearchText}
         onSubmitEditing={handleSearch}
+        leftIcon={<MaterialIcons name="search" size={24} color="gray" />}
+        rightIcon={<AntDesign name="closecircle" size={20} color="gray" />}
       />
       <View style={styles.recentSearchesContainer}>
         <Text style={styles.recentSearchesTitle}>Recherches récentes :</Text>
@@ -80,6 +85,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 8,
+  },
+  searchBarContainer: {
+    paddingHorizontal: 0,
+    marginHorizontal: 20,
+    width:'90%',
+  },
+  searchBar: {
+    paddingHorizontal: 10,
+    paddingVertical: 1,
+    marginhorizontal: 10,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    backgroundColor: 'white',
   },
   header: {
     flexDirection: "row",

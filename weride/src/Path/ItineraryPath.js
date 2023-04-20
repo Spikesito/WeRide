@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Platform } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faMapMarkerAlt,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const ItineraryPath = () => {
+  const navigation = useNavigation();
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(true);
@@ -12,13 +25,13 @@ const ItineraryPath = () => {
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShowDatePicker(Platform.OS === 'ios');
+    setShowDatePicker(Platform.OS === "ios");
     setDate(currentDate);
   };
 
   const onTimeChange = (event, selectedTime) => {
     const currentTime = selectedTime || time;
-    setShowTimePicker(Platform.OS === 'ios');
+    setShowTimePicker(Platform.OS === "ios");
     setTime(currentTime);
   };
 
@@ -34,8 +47,14 @@ const ItineraryPath = () => {
         <FontAwesomeIcon style={styles.icon} icon={faMapMarkerAlt} />
         <TextInput style={styles.input} value="Arriver" placeholder="Input 2" />
       </View>
-      <TouchableOpacity style={styles.addbutton} onPress={() => console.log('OK')}>
-        <Text>Ajouter une étape</Text>
+      <TouchableOpacity
+        style={styles.addbutton}
+        onPress={() => console.log("OK")}
+      >
+        <View style={styles.addButtonContent}>
+          <FontAwesomeIcon icon={faPlusCircle} />
+          <Text style={styles.addButtonText}>Ajouter une étape</Text>
+        </View>
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
@@ -60,7 +79,10 @@ const ItineraryPath = () => {
           />
         )}
       </View>
-      <TouchableOpacity style={styles.continueButton} onPress={() => console.log('OK')}>
+      <TouchableOpacity
+        style={styles.continueButton}
+        onPress={() => navigation.navigate("CreatePost")}
+      >
         <Text>Continuer</Text>
       </TouchableOpacity>
     </View>
@@ -73,8 +95,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 16,
@@ -85,60 +107,65 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
+    borderColor: "#ccc",
     padding: 10,
     paddingLeft: 35,
-    width: '100%',
+    width: "100%",
   },
   buttonContainer: {
-    flexDirection: 'row',
-    gap: '5%',
-    width: '100%',
-    marginTop: '5%',
+    flexDirection: "row",
+    gap: "5%",
+    width: "100%",
+    marginTop: "5%",
     marginBottom: 20,
-    marginLeft: '5%',
+    marginLeft: "5%",
   },
   addbutton: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     padding: 12,
-    width: '100%',
-    height: '7%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "100%",
+    height: "7%",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    backgroundColor: "#DCDBDB",
+  },
+  addButtonContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  addButtonText: {
+    marginLeft: 5,
   },
   continueButton: {
-    backgroundColor: '#597393',
+    backgroundColor: "#FFCC33",
     borderWidth: 2,
     borderRadius: 3,
-    borderColor: '#597393',
+    borderColor: "#FFCC33",
     padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '70%',
-    height: '7%',
+    justifyContent: "center",
+    alignItems: "center",
+    width: "70%",
+    height: "7%",
   },
   duoButton: {
-    textAlign: 'center',
+    textAlign: "center",
     borderRadius: 10,
-    backgroundColor: 'cyan',
+    backgroundColor: "cyan",
     padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '20%',
+    justifyContent: "center",
+    alignItems: "center",
+    width: "20%",
   },
   icon: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     left: 8,
     marginRight: 10,
   },
   inputContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    marginBottom: 15,
+    backgroundColor: "#DCDBDB",
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
   },
 });

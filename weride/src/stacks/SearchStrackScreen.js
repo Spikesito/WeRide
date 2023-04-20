@@ -9,37 +9,37 @@ import EndSearchScreen from "../Search/EndSearchScreen";
 const SearchStackScreen = () => {
   const SearchStack = createNativeStackNavigator();
   return (
-      <SearchStack.Navigator
-        screenOptions={{
-          header: (props) => <Header {...props} />,
-        }}
+    <SearchStack.Navigator
+     screenOptions={{
+        header: (props) => <Header {...props} />,
+      }}
       >
-        <SearchStack.Screen
-          name="Search"
-          component={SearchScreen}
-          options={{
-            title: '',
-            headerShown: false,
-          }}
-        />
-        <SearchStack.Screen
-          name="Filter"
-          component={FilterScreen}
-          options={{
-            title: '',
-            headerShown: false,
-          }}
-        />
-        <SearchStack.Screen
-          name="Result"
-          component={EndSearchScreen}
-          options={{
-            title: '',
-            headerShown: false,
-          }}
-        />
-      </SearchStack.Navigator>
-      );
+      <SearchStack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          title: '',
+          headerShown: false,
+        }}
+      />
+      <SearchStack.Screen
+        name="Filter"
+        component={FilterScreen}
+        options={{
+          title: '',
+          headerShown: false,
+        }}
+      />
+      <SearchStack.Screen
+        name="Result"
+        component={EndSearchScreen}
+        options={{
+          title: '',
+          headerShown: false,
+        }}
+      />
+    </SearchStack.Navigator>
+  );
 };
 
-      export default SearchStackScreen;
+export default SearchStackScreen;

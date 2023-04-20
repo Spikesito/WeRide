@@ -1,8 +1,16 @@
 import React from "react";
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigation } from "@react-navigation/native";
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 const ProfilScreen = () => {
   const navigation = useNavigation();
@@ -13,8 +21,7 @@ const ProfilScreen = () => {
       <View style={{ width: '80%', display: "flex", flexDirection: "row", justifyContent: 'space-between', marginTop: '-10%', marginLeft: '10%', zIndex: 10, }}>
         <Text style={styles.name}>SEGURET Emile</Text>
         <TouchableOpacity onPress={() => navigation.navigate('ModifProfil')}>
-          <Text style={{ color: 'white', }}>Param</Text>
-          {/* <FontAwesomeIcon icon={icon({ name: 'pen' })} /> */}
+          <FontAwesomeIcon icon={faPen} style={{color: 'white'}}/>
         </TouchableOpacity>
       </View>
 

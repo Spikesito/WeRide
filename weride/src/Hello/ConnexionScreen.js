@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     marginRight: 10,
-    fontSize: 10,
+    fontSize: 15,
   },
 
   bottomButtonText: {
     color: 'blue',
-    fontSize: 10,
+    fontSize: 15,
     fontWeight: 'bold',
   },
 });
