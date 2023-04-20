@@ -17,13 +17,13 @@ const NewPath = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Quel est votre type de trajet ?</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BaladeTrajet')}>
-        <ImageBackground source={require('../../assets/motoAcceuil.jpg')} style={styles.imageBackground}>
+        <ImageBackground source={require('../../assets/Balade.png')} style={styles.imageBackground}>
           <Text style={styles.buttonText}>Balade</Text>
         </ImageBackground>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BaladeTrajet')}>
-        <ImageBackground source={require('../../assets/motoAcceuil.jpg')} style={styles.imageBackground}>
+        <ImageBackground source={require('../../assets/Trajet.png')} style={styles.imageBackground}>
           <Text style={styles.buttonText}>Trajet </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
   text: {
     marginRight: '20%',
     fontWeight: 'bold',
-    fontSize: '5vw',
+    fontSize:20,
   }
 })

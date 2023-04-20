@@ -1,45 +1,46 @@
 import React from "react";
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigation } from "@react-navigation/native";
 
-const ProfilScreen = () => {
+const OtherProfil = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView style={styles.container}>
-      <Image source={require('../../assets/Emile.png')} style={{ width: '100%', height: '100%', zIndex: 0 }} />
+    <View style={styles.container}>
+      <Image source={require('../../assets/Gabby.png')} style={{ width: '100%', height: '50%', zIndex: 0 }} />
 
-      <View style={{ width: '80%', display: "flex", flexDirection: "row", justifyContent: 'space-between', marginTop: '-10%', marginLeft: '10%', zIndex:10, }}>
-        <Text style={{fontSize: 20, color: 'white'}}>SEGURET Emile</Text>
+      <View style={styles.containerHead}>
+        <Text style={{color:'white', fontSize: '5vw' }}>THOYER Gabby</Text>
         <TouchableOpacity onPress={() => navigation.navigate('ModifProfil')}>
           <FontAwesomeIcon icon={icon({ name: 'pen' })} />
         </TouchableOpacity>
       </View>
 
       <View style={styles.containerBody}>
-        <Text>Motard passionné depuis plusieurs années et ayant eu plusieurs engins, je n'attend plus qu'une seule chose : qu'un dame veuille bien passer son permis moto afin d'aller faire de jolie road trip !</Text>
+        <Text>A défaut d'être un super motard, j'excelle en dev notamment pour la création d'application mobile !</Text>
 
         <View style={styles.body}>
           <Text style={{ fontWeight: 'bold' }}>Moto</Text>
-          <Text>Tenere 700 - Yamaha</Text>
-          <Text>Année: 2020</Text>
-          <Text>Description: Lorem</Text>
+          <Text>Yamaha MT 07</Text>
         </View>
 
         <View style={styles.body}>
           <Text style={{ fontWeight: 'bold' }}>Trajet effectués</Text>
           <Text>10 trajets depuis juillet 2022</Text>
           <TouchableOpacity style={{ backgroundColor: 'transparent' }}>
-            <Text style={styles.VoirHistorique}>Voir l'historique</Text>
+            <Text style={{ fontSize: 12, marginLeft: '2%', marginTop: '1%' }}>Voir l'historique</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity style={styles.buttonAddFriend}>
+            <Text>Ajouter en ami</Text>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
-export default ProfilScreen;
+export default OtherProfil;
 
 const styles = StyleSheet.create({
   container:{
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: 'space-between',
       marginTop: '-10%',
-      marginLeft: '10%'
+      marginLeft: '10%',
+      zIndex: 10
   },
   containerBody: {
       marginTop: '7%',
@@ -61,10 +63,14 @@ const styles = StyleSheet.create({
   body: {
       marginTop: '8%'
   },
-  VoirHistorique: {
-    fontSize: 12, 
-    marginLeft: '3%', 
-    marginTop: '1%',
-    marginBottom: '5%'
-},
+  buttonAddFriend: {
+    backgroundColor: '#FFCC33',
+    borderRadius: 5,
+    padding: 12,
+    width: '100%',
+    height: '7%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+  }
 })
