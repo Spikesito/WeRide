@@ -19,6 +19,7 @@ import {
   faShare,
   faUsers,
   faCog,
+  faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 const HomeScreen = ({ userImage, userName }) => {
@@ -36,7 +37,9 @@ const HomeScreen = ({ userImage, userName }) => {
           source={require("../../assets/LOGO_WE_RIDE.png")}
           style={styles.headerTitle}
         />
-        <FontAwesomeIcon icon={faCog} size={24} color="#000" />
+        <TouchableOpacity onPress={() => navigation.navigate("Params")}>
+          <FontAwesomeIcon icon={faCog} size={24} color="#000" />
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -109,6 +112,10 @@ const HomeScreen = ({ userImage, userName }) => {
         <TouchableOpacity style={styles.actionButton}>
           <FontAwesomeIcon icon={faShare} size={20} color="#000" />
         </TouchableOpacity>
+        <TouchableOpacity style={styles.joinEventButton}>
+          <FontAwesomeIcon icon={faUserPlus} size={20} color="#000" />
+          <Text style={styles.joinEventButtonText}>Rejoindre l'événement</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.line} />
       {/* 2eme POST  */}
@@ -169,6 +176,10 @@ const HomeScreen = ({ userImage, userName }) => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
           <FontAwesomeIcon icon={faShare} size={20} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.joinEventButton}>
+          <FontAwesomeIcon icon={faUserPlus} size={20} color="#000" />
+          <Text style={styles.joinEventButtonText}>Rejoindre l'événement</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.line} />
@@ -277,21 +288,41 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginTop: 10,
   },
+  actionsContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    marginTop: 10,
+  },
   actionButton: {
     paddingHorizontal: 15,
     paddingVertical: 5,
     marginRight: 10,
   },
-  followButton: {
+  joinEventButton: {
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 15,
     paddingVertical: 5,
-    marginRight: 10,
-    backgroundColor: "#2196F3",
+    backgroundColor: "#FFCC33",
     borderRadius: 5,
   },
-  followButtonText: {
-    color: "#FFF",
+  joinEventButtonText: {
+    marginLeft: 5,
+    color: "black",
     fontSize: 14,
+  },
+  followButtonText: {
+    color: "#919191",
+    fontSize: 14,
+  },
+  followButton: {
+    borderColor: "#919191",
+    borderWidth: 2,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonContainer: {
     flexDirection: "row",

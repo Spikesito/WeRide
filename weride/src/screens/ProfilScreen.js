@@ -38,14 +38,11 @@ const ProfilScreen = () => {
         }}
       >
         <Text style={styles.name}>SEGURET Emile</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("ModifProfil")}>
-          <FontAwesomeIcon
-            icon={faPen}
-            style={{
-              color: "black",
-              backgroundColor: "white",
-            }}
-          />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ModifProfil")}
+          style={styles.penIconContainer}
+        >
+          <FontAwesomeIcon icon={faPen} style={styles.penIcon} />
         </TouchableOpacity>
       </View>
 
@@ -135,5 +132,16 @@ const styles = StyleSheet.create({
   logoutButtonText: {
     color: "#fff",
     fontSize: 16,
+  },
+  penIconContainer: {
+    backgroundColor: "white",
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 30,
+    height: 30,
+  },
+  penIcon: {
+    color: "black",
   },
 });

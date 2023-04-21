@@ -7,6 +7,11 @@ import OtherProfil from "../Profil/OtherProfil";
 import MesAmis from "../Post/MesAmis";
 import MyFriend from "../screens/MyFriend";
 import FriendProfile from "../Profil/FriendProfile";
+import Params from "../screens/Params";
+import Notification from "../screens/Notification";
+import Confi from "../screens/Confi";
+import Aide from "../screens/Aide";
+import Propos from "../screens/Propos";
 
 const HomeStackScreen = () => {
   const HomeStack = createNativeStackNavigator();
@@ -60,6 +65,46 @@ const HomeStackScreen = () => {
       <HomeStack.Screen
         name="FriendProfile"
         component={FriendProfile}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="Params"
+        component={Params}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="Notification"
+        component={Notification}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="Confi"
+        component={Confi}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="Aide"
+        component={Aide}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="Propos"
+        component={Propos}
         options={{
           title: "",
           headerShown: false,

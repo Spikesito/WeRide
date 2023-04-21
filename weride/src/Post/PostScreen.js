@@ -209,11 +209,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
     marginRight: 10,
-    backgroundColor: "#2196F3",
+    borderColor: "#919191",
+    borderWidth: 2,
     borderRadius: 5,
   },
   followButtonText: {
-    color: "#FFF",
+    color: "#919191",
     fontSize: 14,
   },
   backButton: {
