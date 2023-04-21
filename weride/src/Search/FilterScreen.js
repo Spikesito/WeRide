@@ -94,11 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: 16,
     paddingTop: 80,
-    //marginTop: 40,
   },
-  // locationContainer: {
-  //     marginBottom: 16,
-  // },
   title: {
     fontSize: 16,
     marginRight: 16,

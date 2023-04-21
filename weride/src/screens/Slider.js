@@ -38,6 +38,21 @@ const Slider = () => {
     return <View style={styles.pagination}>{dots}</View>;
   };
 
+  const slides = [
+    {
+      title: "Partagez vos trajets à venir :",
+      text: "Dans la séction vos trajets vous pouvez partager vos trajets à venir et permettre à d'autres motard(e)s de vous rejoindre !",
+    },
+    {
+      title: "Gardez le contact !",
+      text: "Vous pouvez ajouter des utilisateurs en ami pour pouvoir suivre leurs trajets futurs et rouler avec eux !",
+    },
+    {
+      title: "Faites de nouvelles rencontres motardesques !",
+      text: "En effet dans la section Home cochez Découvrir pour voir de nouveaux trajets !",
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -47,7 +62,7 @@ const Slider = () => {
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
-        {["Page 1", "Page 2", "Page 3"].map((title, index) => (
+        {slides.map((slide, index) => (
           <View key={index} style={styles.page}>
             {index === 1 && (
               <Image
@@ -55,11 +70,8 @@ const Slider = () => {
                 style={styles.image}
               />
             )}
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              lacinia odio vitae vestibulum.
-            </Text>
+            <Text style={styles.title}>{slide.title}</Text>
+            <Text style={styles.text}>{slide.text}</Text>
             {index === 2 && (
               <TouchableOpacity
                 style={styles.startButton}

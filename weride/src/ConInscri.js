@@ -13,9 +13,15 @@ const ConInscri = () => {
         style={styles.image}
       />
       <Image
-        source={require('./../assets/image.png')}
-        style={{ width: '90%', height: '20%', zIndex: 10, position: 'absolute', alignSelf:'center' }}
-        resizeMode='contain'
+        source={require("./../assets/image.png")}
+        style={{
+          width: "90%",
+          height: "20%",
+          zIndex: 10,
+          position: "absolute",
+          alignSelf: "center",
+        }}
+        resizeMode="contain"
       />
       <TouchableOpacity
         style={styles.buttonConnexion}
@@ -40,13 +46,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     position: "relative",
-    justifyContent: "center", // Ajouté pour centrer les éléments
+    justifyContent: "center",
   },
   image: {
     width: "100%",
     height: "100%",
     zIndex: 0,
-    position: "absolute", // Ajouté pour positionner l'image en arrière-plan
+    position: "absolute",
   },
   buttonConnexion: {
     borderWidth: 1,

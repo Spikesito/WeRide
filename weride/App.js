@@ -9,15 +9,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return(
+  return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="ConInscri" component={ConInscri}/>
-        <Stack.Screen name="Connexion" component={ConnexionScreen}/>
-        <Stack.Screen name="Inscription" component={InscriptionScreen}/>
-        <Stack.Screen name="Slider" component={Slider}/>
-        <Stack.Screen name="Tabs" component={Tabs}/>
+        <Stack.Screen name="ConInscri" component={ConInscri} />
+        <Stack.Screen name="Connexion" component={ConnexionScreen} />
+        <Stack.Screen name="Inscription" component={InscriptionScreen} />
+        <Stack.Screen name="Slider" component={Slider} />
+        <Stack.Screen name="Tabs" component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
