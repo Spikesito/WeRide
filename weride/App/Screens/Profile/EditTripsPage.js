@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { updateData, readData } from "../../CRUD";
+import { updateData, readData, deleteData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
 import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
@@ -37,7 +37,7 @@ const EditTripsPage = ({ navigation, route }) => {
       setDeparture(tripData.departure);
       setArrival(tripData.arrival);
       for (let s in tripData.steps) {
-        liste = [...liste, { id : stepsList.length, name: tripData.steps[s]}];
+        liste = [...liste, { id : liste.length, name: tripData.steps[s]}];
       }
       setStepsList(liste);
     }
@@ -82,6 +82,39 @@ const EditTripsPage = ({ navigation, route }) => {
     useEffect(() => {
       initializeData();
     }, [tripData]);
+
+    const updateTrip = () => {
+      if (errorHandler(setErrorMessage, title, description, departureDate, departure, arrival)) {
+        setErrorMessage("");
+        try {
+          let trip = {
+            title: title,
+            description: description,
+            departure_date: departureDate,
+            departure: departure,
+            arrival: arrival,
+            steps: stepsList.map(step => step.name),
+            creator: tripData.creator,
+            participants: tripData.participants,
+          };  
+          updateData(`trips/${tripId}` ,trip);
+          navigation.navigate("Profile");
+        }
+        catch (error) {
+          console.error(error);
+        }
+      }
+    }
+
+    const deleteTrip = () => {
+      try {
+        deleteData(`trips/${tripId}`);
+        navigation.navigate("Profile");
+      }
+      catch (error) {
+        console.error(error);
+      }
+    }
 
     return (
         <View>
@@ -147,12 +180,10 @@ const EditTripsPage = ({ navigation, route }) => {
             keyExtractor={(item) => item.id}
           />
     
-          <Button title="Modify Trip" />
+          <Button title="Modify Trip" onPress={updateTrip} />
           <TouchableOpacity
             style={{backgroundColor: "red", paddingHorizontal: 30, paddingVertical: 10}}
-            onPress={() => {
-            // Ajoutez ici la fonction pour supprimer le trajet
-            }}
+            onPress={deleteTrip}
             >
           <Text style={{fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center'}} >DELETE TRIP</Text>
         </TouchableOpacity>

@@ -68,7 +68,7 @@ const CreateTripPage = ({ navigation }) => {
   }
 
   const createTrip = async () => {
-    if (errorHandler(setErrorMessage, title, description, departureDate, departure, arrival, stepsList)) {
+    if (errorHandler(setErrorMessage, title, description, departureDate, departure, arrival)) {
       setErrorMessage("");
       try {
         trip = {
@@ -79,7 +79,7 @@ const CreateTripPage = ({ navigation }) => {
           arrival: arrival,
           steps: stepsList.map(step => step.name),
           creator: currentUser,
-          participant: [currentUser],
+          participants: [currentUser],
         };
         
         const newTripKey = await createNewTrip('trips/', trip);
