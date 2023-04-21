@@ -18,6 +18,8 @@ const LoginPage = ({ navigation }) => {
   const login = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      setEmail("");
+      setPassword("");
       navigation.navigate("Home");
     } catch (error) {
       errorLogin = true;

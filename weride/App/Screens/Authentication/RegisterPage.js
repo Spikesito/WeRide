@@ -12,6 +12,15 @@ const RegisterPage = ({ navigation }) => {
   const [birthDate, setBirthDate] = useState("");
   const [password, setPassword] = useState("");
 
+  const resetForm = () => {
+    setFirstName("");
+    setPseudo("");
+    setEmail("");
+    setPhoneNumber("");
+    setBirthDate("");
+    setPassword("");
+  }
+
   const register = async () => {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(newEmail, password);
@@ -27,6 +36,7 @@ const RegisterPage = ({ navigation }) => {
         messagerie: [],
       };
       await createNewUser(`users/${user.uid}`, userData);
+      resetForm();
       navigation.navigate("Home");
     } catch (error) {
       // Handle registration errors here

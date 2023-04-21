@@ -10,10 +10,15 @@ const MessagingPage = ({ navigation }) => {
   const [keysConversations, setKeysConversations] = useState([]);
   const [conversations, setConversations] = useState([]);
 
+  const fetchParticipants = () => {
+    
+  }
+
   const fetchConversations = async () => {
     // Replace "conversations" with the appropriate path to conversations in your database
-    const userConversations = await readData("conversations/");
+    const userConversations = await readData("messaging/");
     setKeysConversations(Object.keys(userConversations).filter((key) =>{
+      console.log(key);
       return userConversations[key].participants.includes(currentUser);
     }));
     setConversations(Object.values(userConversations).filter((key) =>{

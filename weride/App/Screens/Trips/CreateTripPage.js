@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { createData, createNewMessaging, createNewTrip, readData } from "../../Components/ExternalFunction/CRUD";
-import { auth } from "../../firebase";
+import { createNewMessaging, createNewTrip, readData } from "../../Components/ExternalFunction/CRUD";
 import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
 import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
-import { push, ref, child } from "firebase/database";
-import { db } from "../../firebase";
+import { auth } from "../../firebase";
 
 const CreateTripPage = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -55,11 +53,11 @@ const CreateTripPage = ({ navigation }) => {
   };
 
   const renderSteps = ({ item }) => (
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <Text style={{ paddingVertical: 10 }}>{item.name}</Text>
-      <TouchableOpacity onPress={() => deleteStep(item.id)}>
-        <Text style={{ color: "red", marginLeft: 10, }}>Supprimer</Text>
-      </TouchableOpacity>
+    <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+    <Text style={{ paddingVertical: 2 }}>{item.name}</Text>
+    <TouchableOpacity onPress={() => deleteStep(item.id)}>
+      <Text style={{color: "red", marginLeft: 10,}}>Supprimer</Text>
+    </TouchableOpacity>
     </View>
   );
 
@@ -79,7 +77,7 @@ const CreateTripPage = ({ navigation }) => {
           arrival: arrival,
           steps: stepsList.map(step => step.name),
           creator: currentUser,
-          participant: [currentUser],
+          participants: [currentUser],
         };
         
         const newTripKey = await createNewTrip('trips/', trip);

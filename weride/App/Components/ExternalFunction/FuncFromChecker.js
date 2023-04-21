@@ -15,7 +15,7 @@ const isValidDate = (dateString) => {
 };
 
 const isFormComplete = (title, description, departureDate, departure, arrival, stepsList) => {
-    if (title === '' || description === '' || departureDate === '' || departure === '' || arrival === '' || stepsList.length === 0) {
+    if (title === '' || description === '' || departureDate === '' || departure === '' || arrival === '') {
         return false;
     } else {
         return true;

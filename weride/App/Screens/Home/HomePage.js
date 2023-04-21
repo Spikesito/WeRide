@@ -67,7 +67,7 @@ const HomePage = ({ navigation }) => {
           <Text>{item.title}</Text>
           <Text>{item.departure_date}</Text>
         </View>
-        <Button title="See Trip" style={{ with: '15%' }} onPress={() => navigation.navigate("TripsDetails", { key })} />
+        <Button title="Voir le trip " style={{ with: '15%' }} onPress={() => navigation.navigate("TripsDetails", { key })} />
       </View>
     );
   };

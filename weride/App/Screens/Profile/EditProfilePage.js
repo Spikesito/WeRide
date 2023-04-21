@@ -65,7 +65,7 @@ const EditProfilePage = ({ navigation }) => {
       email: new_email,
     };
 
-    await updateData(`users/${currentUser.id}`, updatedData);
+    await updateData(`users/${currentUser.uid}`, updatedData);
     navigation.goBack(); // Navigate back to the ProfilePage
   };
 
