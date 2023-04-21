@@ -25,16 +25,15 @@ const ProfilePage = ({ navigation }) => {
     }));
   }
 
-  const renderItem = ({ item }) => {
-    const key = tripUserkey.filter(trip => trip.title === item.title);
-    console.log(key);
+  const renderItem = ({ item, index }) => {
+    const key = tripUserkey[index];
     return (
       <View style={{padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
         <View>
           <Text>{item.title}</Text>
           <Text>{item.departure_date}</Text>
         </View>
-        <Button title="Modify" style={{with: '15%'}} onPress={() => navigation.navigate("EditTrips", {variable})}/>
+        <Button title="Modify" style={{with: '15%'}} onPress={() => navigation.navigate("EditTrip", { key })}/>
       </View>
     );
   };
@@ -60,7 +59,7 @@ const ProfilePage = ({ navigation }) => {
       <Button title="Modify Bike" onPress={() => navigation.navigate("Bikes")} />
       <FlatList style={{padding: 5}}
         data={tripUserData}
-        renderItem={renderItem}
+        renderItem={(item, index) => renderItem(item, index)}
         keyExtractor={item => item.id}
       />
     </View>
