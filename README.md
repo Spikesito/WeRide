@@ -76,7 +76,7 @@ npx expo start
 ```
 Ouvrez l'émulateur Android ou iOS, ou scannez le QR code avec l'application Expo Go sur votre appareil mobile.
 
-        
+## Créateurs : 
 
-        
-    
+Equipe Backend : Quentin FAYOLLE & Emile SEGURET
+Equipe Frontend : Gabby THOYER & Amaury LYONNET
