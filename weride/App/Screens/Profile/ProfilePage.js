@@ -25,15 +25,22 @@ const ProfilePage = ({ navigation }) => {
     }));
   }
 
+  const handleRedirectionEditTrip = (key) => {
+    setUserData({});
+    setTripUserKey({});
+    setTripUserData({});
+    navigation.navigate("EditTrip", { key })
+  }
+
   const renderItem = ({ item, index }) => {
     const key = tripUserkey[index];
     return (
-      <View style={{padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+      <View style={{ padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <View>
           <Text>{item.title}</Text>
           <Text>{item.departure_date}</Text>
         </View>
-        <Button title="Modify" style={{with: '15%'}} onPress={() => navigation.navigate("EditTrip", { key })}/>
+        <Button title="Modify" style={{ with: '15%' }} onPress={() => handleRedirectionEditTrip(key)} />
       </View>
     );
   };
@@ -45,19 +52,23 @@ const ProfilePage = ({ navigation }) => {
 
   return (
     <View>
-      <Text>First Name: {userData.firstname}</Text>
-      <Text>Last Name: {userData.pseudo}</Text>
-      <Text>Email: {userData.email}</Text>
+      <Text style={{ margin: 10, fontWeight: "bold" }}>Données utilisateur: </Text>
+      <Text style={{ padding: 5 }}>Prénom: {userData.firstname}</Text>
+      <Text style={{ padding: 5 }}>Pseudo: {userData.pseudo}</Text>
+      <Text style={{ padding: 5 }}>Email: {userData.email}</Text>
       <Button title="Edit Profile" onPress={() => navigation.navigate("EditProfile")} />
       {userData.bike ? (
         <>
-          <Text>Model: {userData.bike.model}</Text>
-          <Text>Brand: {userData.bike.brand}</Text>
+          <Text style={{ margin: 10, fontWeight: "bold" }}>Moto: </Text>
+          <Text style={{ padding: 5 }}>Modèle: {userData.bike.model}</Text>
+          <Text style={{ padding: 5 }}>Marque: {userData.bike.brand}</Text>
+          <Text style={{ padding: 5 }}>Année: {userData.bike.year}</Text>
+          <Text style={{ padding: 5 }}>Description: {userData.bike.description}</Text>
         </>
       ) : null}
-
       <Button title="Modify Bike" onPress={() => navigation.navigate("Bikes")} />
-      <FlatList style={{padding: 5}}
+      <Text style={{ margin: 10, fontWeight: "bold" }}>Trajets créées: </Text>
+      <FlatList style={{ padding: 5 }}
         data={tripUserData}
         renderItem={(item, index) => renderItem(item, index)}
         keyExtractor={item => item.id}

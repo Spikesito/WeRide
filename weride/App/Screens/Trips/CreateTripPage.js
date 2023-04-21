@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { createData, createNewMessaging, createNewTrip, readData } from "../../Components/ExternalFunction/CRUD";
-import { auth } from "../../firebase";
+import { createNewMessaging, createNewTrip, readData } from "../../Components/ExternalFunction/CRUD";
 import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
 import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
-import { push, ref, child } from "firebase/database";
-import { db } from "../../firebase";
+import { auth } from "../../firebase";
 
 const CreateTripPage = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState("");

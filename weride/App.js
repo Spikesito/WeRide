@@ -15,8 +15,8 @@ import FriendsTrips from "./App/Screens/Home/FriendsTrips";
 import ConversationPage from "./App/Screens/Messages/ConversationPage";
 import BikePage from "./App/Screens/Profile/BikePage";
 import MessagingPage from "./App/Screens/Messages/Messaging";
-import EditTripsPage from "./App/Screens/Profile/EditTripsPage";
 import TripsDetails from "./App/Screens/Trips/TripDetailsPage";
+import EditTripsPage from "./App/Screens/Profile/EditTripsPage";
 
 const Stack = createStackNavigator();
 

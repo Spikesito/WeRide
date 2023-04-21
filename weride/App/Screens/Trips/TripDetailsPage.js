@@ -1,19 +1,69 @@
 import { useState, useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Button } from "react-native";
 import { readData } from "../../Components/ExternalFunction/CRUD";
+import { auth } from "../../firebase";
+import { updateData } from "../../Components/ExternalFunction/CRUD";
 
 const TripsDetails = ({ navigation, route }) => {
+    const currentUser = auth.currentUser.uid
+
     const tripId = route.params.key;
     const [tripData, setTripData] = useState({})
 
-    const fetchTripData = async () => {
-        const tripData = await readData(`trips/${tripId}`);
-        setTripData(tripData);
-    }
+    const [participants, setParticipants] = useState([])
 
     const renderSteps = ({ item }) => (
         <Text style={{ paddingVertical: 2 }}>{item}</Text>
     );
+
+    const fetchTripData = async () => {
+        const tripData = await readData(`trips/${tripId}`);
+        setParticipants(tripData.participants)
+        setTripData(tripData);
+    }
+
+    const handleFollowTrip = async () => {
+        let participantsUpdated = []
+
+        if (!participants.includes(currentUser)) {
+            participantsUpdated.push(currentUser) // follow a selected trip
+            alert("Tu as rejoins ce trip !")
+            fetchTripData()
+        } else {
+            if (tripData.creator != currentUser) {
+                participantsUpdated = participants.filter(e => e !== currentUser); // unfollow trip
+                alert("Tu a quitté ce trip !")
+                fetchTripData()
+            } else { // handle case where you want to unfollow but ur the creator of the trip
+                alert("Tu es le créateur de ce trip tu ne pas pas le quitter, il faut le supprimer dans ton profil !")
+            }
+        }
+        if (participantsUpdated.length == []) { // handle case where none of this conditions have been reached
+            participantsUpdated = participants
+        }
+        if (!participantsUpdated.includes(tripData.creator)) { // avoid cases where the creator is getting removed from the participants
+            participantsUpdated.push(tripData.creator)
+        }
+        if (!tripData.steps) { // avoid sending undefined data to realtime database to avoid error
+            tripData.steps = []
+        }
+
+        const updatedData = {
+            title: tripData.title,
+            description: tripData.description,
+            departure_date: tripData.departure_date,
+            departure: tripData.departure,
+            arrival: tripData.arrival,
+            steps: tripData.steps,
+            creator: tripData.creator,
+            participants: participantsUpdated,
+        };
+
+        await updateData(`trips/${tripId}`, updatedData);
+        fetchTripData()
+        // navigation.navigate("Home"); // Navigate back to the ProfilePage
+
+    }
 
     useEffect(() => {
         fetchTripData();
@@ -32,7 +82,7 @@ const TripsDetails = ({ navigation, route }) => {
                 renderItem={renderSteps}
                 keyExtractor={(item) => item}
             />
-
+            <Button title="Rejoindre le Trip" style={{ with: '15%' }} onPress={() => handleFollowTrip(tripId)} />
         </View>
     )
 }

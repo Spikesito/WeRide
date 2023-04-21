@@ -3,7 +3,6 @@ import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react
 import { updateData, readData, deleteData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
-import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
 
 const EditTripsPage = ({ navigation, route }) => {
     const tripId = route.params.key;
