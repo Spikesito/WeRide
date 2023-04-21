@@ -79,4 +79,5 @@ Ouvrez l'émulateur Android ou iOS, ou scannez le QR code avec l'application Exp
 ## Créateurs : 
 
 Equipe Backend : Quentin FAYOLLE & Emile SEGURET
+
 Equipe Frontend : Gabby THOYER & Amaury LYONNET
