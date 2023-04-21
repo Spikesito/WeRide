@@ -40,7 +40,7 @@ const ProfilePage = ({ navigation }) => {
           <Text>{item.title}</Text>
           <Text>{item.departure_date}</Text>
         </View>
-        <Button title="Modify" style={{ with: '15%' }} onPress={() => handleRedirectionEditTrip(key)} />
+        <Button title="Modifier" style={{ with: '15%' }} onPress={() => handleRedirectionEditTrip(key)} />
       </View>
     );
   };
@@ -56,7 +56,7 @@ const ProfilePage = ({ navigation }) => {
       <Text style={{ padding: 5 }}>Prénom: {userData.firstname}</Text>
       <Text style={{ padding: 5 }}>Pseudo: {userData.pseudo}</Text>
       <Text style={{ padding: 5 }}>Email: {userData.email}</Text>
-      <Button title="Edit Profile" onPress={() => navigation.navigate("EditProfile")} />
+      <Button title="Modifier profil" onPress={() => navigation.navigate("EditProfile")} />
       {userData.bike ? (
         <>
           <Text style={{ margin: 10, fontWeight: "bold" }}>Moto: </Text>
@@ -66,7 +66,7 @@ const ProfilePage = ({ navigation }) => {
           <Text style={{ padding: 5 }}>Description: {userData.bike.description}</Text>
         </>
       ) : null}
-      <Button title="Modify Bike" onPress={() => navigation.navigate("Bikes")} />
+      <Button title="Modifier ma moto" onPress={() => navigation.navigate("Bikes")} />
       <Text style={{ margin: 10, fontWeight: "bold" }}>Trajets créées: </Text>
       <FlatList style={{ padding: 5 }}
         data={tripUserData}

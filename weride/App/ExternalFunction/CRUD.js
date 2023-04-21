@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { get, push, ref, set, update, child } from "firebase/database";
+import { get, push, ref, set, update, child, remove } from "firebase/database";
 import "@firebase/database";
 
 export const createData = (path, data) => {

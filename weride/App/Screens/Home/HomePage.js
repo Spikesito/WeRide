@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, FlatList } from "react-native";
+import { View, Text, Button, FlatList, TouchableOpacity } from "react-native";
 import { readData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { RadioButton } from "react-native-paper";
@@ -52,6 +52,7 @@ const HomePage = ({ navigation }) => {
     fetchFriends();
     fetchFriendsTrips();
     fetchTripData();
+    // fetchUserData() // to add friend , functions commented at the end of the file
   }, []);
 
   const renderItem = ({ item, index }) => {
@@ -127,3 +128,65 @@ const HomePage = ({ navigation }) => {
 };
 
 export default HomePage;
+
+
+// Last minute implementation not working 
+
+// const addCreatorToFriend = (creatorId) => {    Function created, but not working correctly
+  //   console.log(userData.friends_id)
+  //   if (creatorId != currentUser) {
+  //     if (userData.friends_id === undefined) {
+  //       let friends_id = [creatorId];
+  //       updateUser(friends_id);
+  //       alert('ajout de cet utilisateur à votre liste ami');
+  //     } else if (!userData.friends_id.includes(creatorId)) {
+  //       userData.friends_id.push(creatorId);
+  //       alert('ajout de cet utilisateur à votre liste ami');
+  //     } else if (userData.friends_id.includes(creatorId)) {
+  //       newFriendsId = userData.friends_id.filter(e => e != creatorId);
+  //       alert("suppression de cet utilisateur de votre liste ami");
+  //       console.log(newFriendsId)
+  //       userData.friends_id = newFriendsId;
+  //     }
+  //     updateData(`users/${currentUser}`, userData);
+  //   }
+  // }
+
+  // const updateUser = (friends_id) => {
+  //   setUserData(Object.assign({}, userData, { friends_id: friends_id }));
+  // }
+
+  // useEffect(() => {
+  //   setUserData(userData)
+  // }, [newFriendsId]);
+
+  // const [userData, setUserData] = useState([]);
+  // let newFriendsId = [];
+
+  // const fetchUserData = async () => {
+  //   const userData = await readData(`users/${currentUser}`);
+  //   setUserData(userData);
+  // }
+
+  // return (
+    //   <View style={{ padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+    //     <View>
+    //       <Text>{item.title}</Text>
+    //       <Text>{item.departure_date}</Text>
+    //     </View>
+    //     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+    //       <TouchableOpacity
+    //         style={{ backgroundColor: "blue", padding: 5, marginRight: 10 }}
+    //         onPress={() => navigation.navigate("TripsDetails", { key })}
+    //       >
+    //         <Text style={{ fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center' }} >VOIR LE TRIP</Text>
+    //       </TouchableOpacity>
+    //       <TouchableOpacity
+    //         style={{ backgroundColor: "blue", padding: 5, marginRight: 10 }}
+    //         onPress={() => addCreatorToFriend(item.creator)}
+    //       >
+    //         <Text style={{ fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center' }} >SUIVRE LE CREATEUR</Text>
+    //       </TouchableOpacity>
+    //     </View>
+    //   </View>
+    // );
