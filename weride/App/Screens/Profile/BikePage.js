@@ -80,8 +80,8 @@ const BikePage = ({ navigation }) => {
                         <Text>Description:</Text>
                         <TextInput value={new_description} onChangeText={setDescription} />
 
-                        <Button title="Save Bike" onPress={handleSaveBike} />
-                        <Button title="Back to profile" onPress={() => navigation.goBack()} />
+                        <Button title="Sauvegarder cette moto" onPress={handleSaveBike} />
+                        <Button title="Retour profil" onPress={() => navigation.goBack()} />
                     </View>
                 </>
             }

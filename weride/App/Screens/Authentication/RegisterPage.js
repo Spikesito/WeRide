@@ -64,8 +64,8 @@ const RegisterPage = ({ navigation }) => {
       <Text>Mot de passe:</Text>
       <TextInput value={password} onChangeText={setPassword} secureTextEntry />
 
-      <Button title="Register" onPress={register} />
-      <Button title="Back to Login" onPress={() => navigation.goBack()} />
+      <Button title="S'inscrire" onPress={register} />
+      <Button title="Page de connection" onPress={() => navigation.goBack()} />
     </View>
   );
 };

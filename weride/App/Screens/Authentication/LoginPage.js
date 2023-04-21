@@ -32,12 +32,12 @@ const LoginPage = ({ navigation }) => {
       <Text>Email:</Text>
       <TextInput value={email} onChangeText={setEmail} />
 
-      <Text>Password:</Text>
+      <Text>Mot de passe:</Text>
       <TextInput value={password} onChangeText={setPassword} secureTextEntry />
 
       {errorLogin ? (
         <View>
-          <Text> Wrong email or password </Text>
+          <Text> Mauvais email ou mot de passe </Text>
         </View>
       ) : null}
 

@@ -117,11 +117,11 @@ const HomePage = ({ navigation }) => {
         />
       )}
 
-      <Button title="Create Trip" onPress={() => navigation.navigate("CreateTrip")} />
-      <Button title="Profile Page" onPress={() => navigation.navigate("Profile")} />
-      <Button title="Messaging" onPress={() => navigation.navigate("Messaging")} />
+      <Button title="Créer un trajet" onPress={() => navigation.navigate("CreateTrip")} />
+      <Button title="Page profil" onPress={() => navigation.navigate("Profile")} />
+      <Button title="Messagerie" onPress={() => navigation.navigate("Messaging")} />
 
-      <Button title="Log Out" onPress={handleLogOut} />
+      <Button title="Se déconnecter" onPress={handleLogOut} />
     </View>
   );
 };
