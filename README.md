@@ -35,6 +35,7 @@ Back:
     - Découvrir : accès aux trajets de tous les utilisateurs de l'application
     - Mes amis : accès aux trajets de ses amis uniquement
     - Page plus d'information sur un trajet en cliquant dessus.
+    - Possibilité de rejoindre un trajet sur la page détail de ce dernier.
 - Accès à son profil avec plusieurs options de modification :
     - Affichage de certaines données utilisateur / modification possible de toutes les données utilisateur.
     - Ajout de sa moto / modification de sa moto
