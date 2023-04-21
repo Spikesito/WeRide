@@ -36,6 +36,7 @@ Back:
     - Mes amis : accès aux trajets de ses amis uniquement
     - Page plus d'information sur un trajet en cliquant dessus.
     - Possibilité de rejoindre un trajet sur la page détail de ce dernier.
+- Messagerie : un utilisateur est ajouté à une messagerie d'un trajet dès qu'il la rejoint
 - Accès à son profil avec plusieurs options de modification :
     - Affichage de certaines données utilisateur / modification possible de toutes les données utilisateur.
     - Ajout de sa moto / modification de sa moto
