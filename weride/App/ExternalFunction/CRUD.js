@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { db } from "../firebase";
+=======
+import { db } from "../../firebase";
+>>>>>>> b06e37fbb35e3c099087e0965a806ec91e0067dc
 import { get, push, ref, set, update, child, remove } from "firebase/database";
 import "@firebase/database";
 

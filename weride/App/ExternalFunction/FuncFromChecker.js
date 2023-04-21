@@ -14,7 +14,7 @@ const isValidDate = (dateString) => {
   return true;
 };
 
-const isFormComplete = (title, description, departureDate, departure, arrival, stepsList) => {
+const isFormComplete = (title, description, departureDate, departure, arrival) => {
     if (title === '' || description === '' || departureDate === '' || departure === '' || arrival === '') {
         return false;
     } else {
@@ -22,8 +22,8 @@ const isFormComplete = (title, description, departureDate, departure, arrival, s
     }
 };
 
-const errorHandler = (setter, title, description, departureDate, departure, arrival, stepsList) => {
-    if (!isFormComplete(title, description, departureDate, departure, arrival, stepsList)) {
+const errorHandler = (setter, title, description, departureDate, departure, arrival) => {
+    if (!isFormComplete(title, description, departureDate, departure, arrival)) {
         setter("Tous le champs ne sont pas remplis. Veuillez vérifier avant de renvoyer.")
         return false;
     } else if (!isValidDate(departureDate)) {

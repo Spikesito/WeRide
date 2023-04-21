@@ -9,8 +9,10 @@ const HomePage = ({ navigation }) => {
   const [friendsTripskeys, setFriendsTripsKeys] = useState({});
   const [tripsData, setTripsData] = useState({});
   const [tripskeys, setTripsKeys] = useState({});
+  const [userData, setUserData] = useState({});
   const [checked, setChecked] = useState('discover');
   let friends = []
+  let newFriendsId = [];
   let currentUser = auth.currentUser.uid;
 
   const fetchFriends = async () => {
@@ -48,12 +50,44 @@ const HomePage = ({ navigation }) => {
     }));
   }
 
+  const fetchUserData = async () => {
+    const userData = await readData(`users/${currentUser}`);
+    setUserData(userData);
+  }
+
   useEffect(() => {
     fetchFriends();
     fetchFriendsTrips();
     fetchTripData();
     // fetchUserData() // to add friend , functions commented at the end of the file
   }, []);
+
+  const addCreatorToFriend = (creatorId) => {
+    if (creatorId != currentUser) {
+      if (userData.friends_id === undefined) {
+        let friends_id = [creatorId];
+        updateUser(friends_id);
+        alert('ajout de cet utilisateur à votre liste ami');
+      } else if (!userData.friends_id.includes(creatorId)) {
+        userData.friends_id.push(creatorId);
+        alert('ajout de cet utilisateur à votre liste ami');
+      } else if (userData.friends_id.includes(creatorId)) {
+        newFriendsId = userData.friends_id.filter(e => e != creatorId);
+        alert("suppression de cet utilisateur de votre liste ami");
+        console.log(newFriendsId)
+        userData.friends_id = newFriendsId;
+      }
+      updateData(`users/${currentUser}`, userData);
+    }
+  }
+
+  const updateUser = (friends_id) => {
+    setUserData(Object.assign({}, userData, {friends_id: friends_id}));
+  }
+
+  useEffect (() => {
+    setUserData(userData)
+  }, [newFriendsId]);
 
   const renderItem = ({ item, index }) => {
     let key
@@ -63,17 +97,28 @@ const HomePage = ({ navigation }) => {
       key = tripskeys[index]
     }
     return (
-      <View style={{ padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+      <View style={{ padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
         <View>
           <Text>{item.title}</Text>
           <Text>{item.departure_date}</Text>
         </View>
-        <Button title="Voir le trip " style={{ with: '15%' }} onPress={() => navigation.navigate("TripsDetails", { key })} />
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <TouchableOpacity
+              style={{backgroundColor: "blue", padding: 5, marginRight: 10}}
+              onPress={() => navigation.navigate("TripsDetails", { key })}
+              >
+            <Text style={{fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center'}} >VOIR LE TRIP</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+              style={{backgroundColor: "blue", padding: 5, marginRight: 10}}
+              onPress={() => addCreatorToFriend(item.creator)}
+              >
+            <Text style={{fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center'}} >SUIVRE LE CREATEUR</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
-
-
 
   const handleLogOut = () => {
     auth.signOut()
