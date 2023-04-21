@@ -7,9 +7,13 @@ import {
 } from "react-native";
 import React from "react";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const InscriptionScreen = () => {
   const navigation = useNavigation();
+  const [showPassword, setShowPassword] = React.useState(false);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Inscription</Text>
@@ -33,11 +37,20 @@ const InscriptionScreen = () => {
         placeholder="Adresse mail"
         returnKeyType="done"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        returnKeyType="done"
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.input1}
+          placeholder="Mot de passe"
+          returnKeyType="done"
+          secureTextEntry={!showPassword}
+        />
+        <TouchableOpacity
+          style={styles.eyeIcon}
+          onPress={() => setShowPassword(!showPassword)}
+        >
+          <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity
         style={styles.button}
         name="Inscription"
@@ -63,6 +76,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 60,
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 10,
+    width: "100%",
+    alignItems: "center",
+  },
+  input1: {
+    flex: 1,
+    padding: 10,
+  },
+  eyeIcon: {
+    padding: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+    width: "100%",
   },
   title: {
     fontSize: 24,

@@ -8,9 +8,13 @@ import {
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const ConnexionScreen = () => {
   const navigation = useNavigation();
+  const [showPassword, setShowPassword] = React.useState(false);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>S'identifier</Text>
@@ -19,11 +23,20 @@ const ConnexionScreen = () => {
         placeholder="Email"
         returnKeyType="done"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        returnKeyType="done"
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.input1}
+          placeholder="Mot de passe"
+          returnKeyType="done"
+          secureTextEntry={!showPassword}
+        />
+        <TouchableOpacity
+          style={styles.eyeIcon}
+          onPress={() => setShowPassword(!showPassword)}
+        >
+          <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity
         style={styles.button}
         name="Connexion"
@@ -58,6 +71,22 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     paddingBottom: "20%",
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 10,
+    width: "100%",
+    alignItems: "center",
+  },
+  input1: {
+    flex: 1,
+    padding: 10,
+  },
+  eyeIcon: {
+    padding: 10,
   },
   input: {
     borderWidth: 1,
