@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { createNewMessaging, createNewTrip, readData } from "../../Components/ExternalFunction/CRUD";
-import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
-import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
+import { createNewMessaging, createNewTrip, readData } from "../../ExternalFunction/CRUD";
+import { handleAddressChange, handleAddressSelect } from "../../ExternalFunction/FuncApiAdd";
+import { errorHandler } from "../../ExternalFunction/FuncFromChecker";
 import { auth } from "../../firebase";
 
 const CreateTripPage = ({ navigation }) => {
@@ -89,7 +89,6 @@ const CreateTripPage = ({ navigation }) => {
   
         await createNewMessaging(`messaging/${newTripKey}`, messaging);
   
-        console.log("le trip a été créé", trip);
         navigation.navigate("Home");
       }
       catch (error) {

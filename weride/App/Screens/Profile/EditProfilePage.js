@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { updateData, readData } from "../../Components/ExternalFunction/CRUD";
+import { updateData, readData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { updateEmail, updatePassword } from "firebase/auth";
 
@@ -69,27 +69,27 @@ const EditProfilePage = ({ navigation }) => {
     };
 
     await updateData(`users/${currentUser.uid}`, updatedData);
-    navigation.goBack(); // Navigate back to the ProfilePage
+    navigation.goBack();
   };
 
   return (
     <View>
-      <Text>First Name:</Text>
+      <Text>Prénom:</Text>
       <TextInput value={new_firstname} onChangeText={setFirstName} />
 
-      <Text>Last Name:</Text>
+      <Text>Pseudo:</Text>
       <TextInput value={new_pseudo} onChangeText={setPseudo} />
 
       <Text>Email:</Text>
       <TextInput value={new_email} onChangeText={setEmail} />
 
-      <Text>Email:</Text>
+      <Text>Téléphone:</Text>
       <TextInput value={new_phone_number} onChangeText={setPhoneNumber} />
 
-      <Text>Current Password:</Text>
+      <Text>Mot de passe actuel:</Text>
       <TextInput value={currentPassword} onChangeText={setCurrentPassword} secureTextEntry />
 
-      <Text>New Password:</Text>
+      <Text>Nouveau mot de passe:</Text>
       <TextInput value={newPass} onChangeText={setNewPass} secureTextEntry />
 
       <Button title="Save Changes" onPress={updateProfile} />

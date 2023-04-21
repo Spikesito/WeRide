@@ -1,48 +1,50 @@
 // MessagingPage.js
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import { readData } from "../../Components/ExternalFunction/CRUD";
+import { readData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 
 const MessagingPage = ({ navigation }) => {
   let currentUser = auth.currentUser.uid;
 
-  const [keysConversations, setKeysConversations] = useState([]);
+  const [trips, setTrips] = useState([])
   const [conversations, setConversations] = useState([]);
+  const [messagingIdsToDisplay, setMessagingIdsToDisplay] = useState([]);
 
-  const fetchParticipants = () => {
-    
+  const fetchData = async () => {
+    const trips = await readData("trips/");
+    const conversations = await readData("messaging/");
+
+    setTrips(trips);
+    setConversations(conversations);
+
+    const filteredConversations = Object.keys(conversations).filter((key) => {
+      if (conversations[key].participant.includes(currentUser)) {
+        return conversations[key];
+      }
+    });
+
+    setMessagingIdsToDisplay(filteredConversations);
   }
 
-  const fetchConversations = async () => {
-    // Replace "conversations" with the appropriate path to conversations in your database
-    const userConversations = await readData("messaging/");
-    setKeysConversations(Object.keys(userConversations).filter((key) =>{
-      console.log(key);
-      return userConversations[key].participants.includes(currentUser);
-    }));
-    setConversations(Object.values(userConversations).filter((key) =>{
-      return userConversations[key].participants.includes(currentUser);
-    }));
-  };
-
   useEffect(() => {
-    fetchConversations();
+    fetchData()
   }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Conversation", { conversationId: item.id })}
+      style={{backgroundColor:"red", paddingVertical:5, paddingHorizontal:15, borderRadius:15, marginVertical: 5,marginLeft:'10%',width: "80%"}}
+      onPress={() => navigation.navigate("Conversation", { conversationId: conversations[item] })}
     >
-      <Text>Conversation {item.id}</Text>
+      <Text>Conversation {trips[item].title}</Text>
     </TouchableOpacity>
   );
-  
+
   return (
     <View>
       <Text>Messaging</Text>
       <FlatList
-        data={conversations}
+        data={messagingIdsToDisplay}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />

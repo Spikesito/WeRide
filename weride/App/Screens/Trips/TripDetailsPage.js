@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { View, Text, FlatList, Button } from "react-native";
-import { readData } from "../../Components/ExternalFunction/CRUD";
+import { readData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
-import { updateData } from "../../Components/ExternalFunction/CRUD";
+import { updateData } from "../../ExternalFunction/CRUD";
 
 const TripsDetails = ({ navigation, route }) => {
     const currentUser = auth.currentUser.uid
@@ -48,6 +48,11 @@ const TripsDetails = ({ navigation, route }) => {
             tripData.steps = []
         }
 
+        const updatedMessaging = {
+            participant: participantsUpdated
+        }
+        await updateData(`messaging/${tripId}`, updatedMessaging)
+
         const updatedData = {
             title: tripData.title,
             description: tripData.description,
@@ -58,11 +63,9 @@ const TripsDetails = ({ navigation, route }) => {
             creator: tripData.creator,
             participants: participantsUpdated,
         };
-
+        
         await updateData(`trips/${tripId}`, updatedData);
         fetchTripData()
-        // navigation.navigate("Home"); // Navigate back to the ProfilePage
-
     }
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { readData } from "../../Components/ExternalFunction/CRUD";
-import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
+import { readData } from "../../ExternalFunction/CRUD";
+import { handleAddressChange, handleAddressSelect } from "../../ExternalFunction/FuncApiAdd";
 
 const EditTripsPage = ({ navigation, route }) => {
     const tripId = route.params.key;
@@ -41,15 +41,10 @@ const EditTripsPage = ({ navigation, route }) => {
     }
 
     const callDepartureChange = (text) => {handleAddressChange(text, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
-
     const callDepartureSelect = (item) => {handleAddressSelect(item, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
-  
     const callArrivalChange = (text) => {handleAddressChange(text, setArrival, setArrivalSuggestions, setShowArrivalSuggestions);};
-  
     const callArrivalSelect = (item) => {handleAddressSelect(item, setArrival, setArrivalSuggestions, setShowArrivalSuggestions);};
-  
     const callStepsChange = (text) => {handleAddressChange(text, setStep, setStepsSuggestions, setShowStepsSuggestions);};
-  
     const callStepsSelect = (item) => {handleAddressSelect(item, setStep, setStepsSuggestions, setShowStepsSuggestions);};
 
     const addStepToList = () => {

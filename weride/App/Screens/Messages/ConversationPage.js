@@ -1,7 +1,7 @@
 // ConversationPage.js
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, TextInput, TouchableOpacity } from "react-native";
-import { readData, createData } from "../../Components/ExternalFunction/CRUD";
+import { readData, createData } from "../../ExternalFunction/CRUD";
 
 const ConversationPage = ({ route }) => {
   const { conversationId } = route.params;

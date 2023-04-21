@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { readData, updateData } from "../../Components/ExternalFunction/CRUD";
+import { readData, updateData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 
 const BikePage = ({ navigation }) => {
+    let currentUserData
     const currentUser = auth.currentUser.uid;
     const [new_model, setModel] = useState("")
     const [new_brand, setBrand] = useState("")
     const [new_year, setYear] = useState("")
     const [new_description, setDescription] = useState("")
-
-    let currentUserData
     const [userData, setUserData] = useState({});
-
 
     const fetchUserData = async () => {
         console.log("user: ", currentUser)
@@ -28,13 +26,10 @@ const BikePage = ({ navigation }) => {
         await fetchUserData()
         let updatedBike = {}
 
-        // Créez une copie de l'objet friends_id
-        console.log(userData)
         if (userData.bike) {
             updatedBike = {...userData.bike}
         }
 
-        // // Ajoutez la nouvelle paire clé-valeur à l'objet copié
         updatedBike.model = new_model;
         updatedBike.brand = new_brand;
         updatedBike.year = new_year;
@@ -47,7 +42,7 @@ const BikePage = ({ navigation }) => {
             phone_number: currentUserData.phone_number,
             birth_date: currentUserData.birth_date,
             friends_id: currentUserData.friends_id,
-            bike: updatedBike // Utilisez l'objet copié et mis à jour
+            bike: updatedBike
         };
 
         return updateData(`users/${currentUser}`, updatedUser);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { readData } from "../../Components/ExternalFunction/CRUD";
+import { readData } from "../../ExternalFunction/CRUD";
 import { View, Text, Button, FlatList } from "react-native";
 import { auth } from "../../firebase";
 

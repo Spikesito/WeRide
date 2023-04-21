@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, FlatList } from "react-native";
-import { readData } from "../../Components/ExternalFunction/CRUD";
+import { readData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { RadioButton } from "react-native-paper";
 
@@ -118,7 +118,6 @@ const HomePage = ({ navigation }) => {
       )}
 
       <Button title="Create Trip" onPress={() => navigation.navigate("CreateTrip")} />
-      {/* <Button title="Add Friend" onPress={() => navigation.navigate("AddFriends")} /> */}
       <Button title="Profile Page" onPress={() => navigation.navigate("Profile")} />
       <Button title="Messaging" onPress={() => navigation.navigate("Messaging")} />
 
