@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { get, push, ref, set, update } from "firebase/database";
+import { get, push, ref, set, update, child } from "firebase/database";
 import "@firebase/database";
 
 export const createData = (path, data) => {
@@ -8,14 +8,20 @@ export const createData = (path, data) => {
   return set(newRef, data);
 };
 
-export const createNewTrip = (path, data) => {
-  const reference = ref(db, path);
-  return set(reference, data);
+export const createNewTrip = async (path, data) => {
+  const newRef = push(child(ref(db), path));
+  const key = newRef.key;
+  await set(newRef, data);
+  return key;
 }
 
 export const createNewUser = (path, data) => {
   const reference = ref(db, path);
   return set(reference, data);
+}
+
+export const createNewMessaging = async (path, data) => {
+  await set(ref(db, path), data);
 }
 
 export const readData = async (path) => {
