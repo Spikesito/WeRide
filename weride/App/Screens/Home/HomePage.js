@@ -12,6 +12,7 @@ const HomePage = ({ navigation }) => {
   const [userData, setUserData] = useState({});
   const [checked, setChecked] = useState('discover');
   let friends = []
+  let newFriendsId = [];
   let currentUser = auth.currentUser.uid;
 
   const fetchFriends = async () => {
@@ -66,8 +67,15 @@ const HomePage = ({ navigation }) => {
       if (userData.friends_id === undefined) {
         let friends_id = [creatorId];
         updateUser(friends_id);
+        alert('ajout de cet utilisateur à votre liste ami');
       } else if (!userData.friends_id.includes(creatorId)) {
         userData.friends_id.push(creatorId);
+        alert('ajout de cet utilisateur à votre liste ami');
+      } else if (userData.friends_id.includes(creatorId)) {
+        newFriendsId = userData.friends_id.filter(e => e != creatorId);
+        alert("suppression de cet utilisateur de votre liste ami");
+        console.log(newFriendsId)
+        userData.friends_id = newFriendsId;
       }
       updateData(`users/${currentUser}`, userData);
     }
@@ -76,6 +84,10 @@ const HomePage = ({ navigation }) => {
   const updateUser = (friends_id) => {
     setUserData(Object.assign({}, userData, {friends_id: friends_id}));
   }
+
+  useEffect (() => {
+    setUserData(userData)
+  }, [newFriendsId]);
 
   const renderItem = ({ item, index }) => {
     let key
