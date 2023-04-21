@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { auth } from "../../firebase";
 
-import { createNewUser } from "../../CRUD";
+import { createNewUser } from "../../Components/ExternalFunction/CRUD";
 
 const RegisterPage = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");

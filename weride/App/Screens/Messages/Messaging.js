@@ -1,27 +1,45 @@
+// MessagingPage.js
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
-import { readData } from "../../CRUD";
-import ConversationList from "./ConversationList";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { readData } from "../../Components/ExternalFunction/CRUD";
+import { auth } from "../../firebase";
 
-const MessagingPage = ({ currentUser, navigation }) => {
+const MessagingPage = ({ navigation }) => {
+  let currentUser = auth.currentUser.uid;
+
+  const [keysConversations, setKeysConversations] = useState([]);
   const [conversations, setConversations] = useState([]);
 
   const fetchConversations = async () => {
-    const userConversations = await readData(`conversations/${currentUser.id}`);
-    setConversations(userConversations);
+    // Replace "conversations" with the appropriate path to conversations in your database
+    const userConversations = await readData("conversations/");
+    setKeysConversations(Object.keys(userConversations).filter((key) =>{
+      return userConversations[key].participants.includes(currentUser);
+    }));
+    setConversations(Object.values(userConversations).filter((key) =>{
+      return userConversations[key].participants.includes(currentUser);
+    }));
   };
 
   useEffect(() => {
     fetchConversations();
   }, []);
 
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Conversation", { conversationId: item.id })}
+    >
+      <Text>Conversation {item.id}</Text>
+    </TouchableOpacity>
+  );
+  
   return (
     <View>
-      <ConversationList
-        conversations={conversations}
-        onConversationPress={(conversation) =>
-          navigation.navigate("Conversation", { conversation })
-        }
+      <Text>Messaging</Text>
+      <FlatList
+        data={conversations}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );

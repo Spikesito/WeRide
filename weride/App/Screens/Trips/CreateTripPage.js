@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { createData, readData } from "../CRUD";
-import { auth } from "../firebase";
+import { createData, readData } from "../../Components/ExternalFunction/CRUD";
+import { auth } from "../../firebase";
 import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
 import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
 
@@ -141,7 +141,8 @@ const deleteStep = (id) => {
       </View>
 
       {showStepsSuggestions && (
-        <FlatList style={{marginBottom: 15}}
+        <FlatList 
+          style={{marginBottom: 15}}
           data={stepsSuggestions}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => callStepsSelect(item)}>
