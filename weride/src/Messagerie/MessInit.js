@@ -27,7 +27,7 @@ const MessScreen = () => {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 85 : 30}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 1 : 30}
       enabled
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -47,31 +47,33 @@ const MessScreen = () => {
               />
             </TouchableOpacity>
           </View>
-          <ScrollView>
-            {/* Ici, mapper les messages à partir de liste de messages */}
-            <View style={styles.message}>
-              <View style={styles.senderPhotoContainer}>
-                <Image
-                  source={require("../../assets/acteur/Christophe.png")}
-                  style={styles.senderPhoto}
-                />
+          <View style={styles.content}>
+            <ScrollView>
+              {/* Ici, mapper les messages à partir de liste de messages */}
+              <View style={styles.message}>
+                <View style={styles.senderPhotoContainer}>
+                  <Image
+                    source={require("../../assets/acteur/Christophe.png")}
+                    style={styles.senderPhoto}
+                  />
+                </View>
+                <View style={styles.senderMessageContainer}>
+                  <Text style={styles.senderMessageText}>
+                    Hey, comment ça va ?
+                  </Text>
+                  <Text style={styles.timeText}>13:45</Text>
+                </View>
               </View>
-              <View style={styles.senderMessageContainer}>
-                <Text style={styles.senderMessageText}>
-                  Hey, comment ça va ?
-                </Text>
-                <Text style={styles.timeText}>13:45</Text>
+              <View style={[styles.message1]}>
+                <View style={styles.myMessageContainer1}>
+                  <Text style={styles.myMessageText1}>
+                    Salut Alice, ça va bien et toi ?
+                  </Text>
+                  <Text style={[styles.timeText, styles.timeText1]}>13:48</Text>
+                </View>
               </View>
-            </View>
-            <View style={[styles.message1]}>
-              <View style={styles.myMessageContainer1}>
-                <Text style={styles.myMessageText1}>
-                  Salut Alice, ça va bien et toi ?
-                </Text>
-                <Text style={[styles.timeText, styles.timeText1]}>13:48</Text>
-              </View>
-            </View>
-          </ScrollView>
+            </ScrollView>
+          </View>
           <View style={styles.inputContainer}>
             <TouchableOpacity style={styles.attachmentButton}>
               <FontAwesomeIcon icon={faPaperclip} />
@@ -213,5 +215,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  content: {
+    flex: 1,
   },
 });

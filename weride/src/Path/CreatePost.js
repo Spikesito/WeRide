@@ -37,6 +37,7 @@ const CreatePost = ({ userImage, userName }) => {
           <TextInput
             style={styles.input}
             placeholder="Nouveau titre de la balade"
+            returnKeyType="done"
           />
 
           <Text style={styles.postTitle}>Faites votre post</Text>

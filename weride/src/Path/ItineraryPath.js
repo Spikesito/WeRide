@@ -44,11 +44,19 @@ const ItineraryPath = () => {
       <Text style={styles.title}>Itinéraire</Text>
       <View style={styles.inputContainer}>
         <FontAwesomeIcon style={styles.icon} icon={faMapMarkerAlt} />
-        <TextInput style={styles.input} placeholder="Départ" />
+        <TextInput
+          style={styles.input}
+          placeholder="Départ"
+          returnKeyType="done"
+        />
       </View>
       <View style={styles.inputContainer}>
         <FontAwesomeIcon style={styles.icon} icon={faMapMarkerAlt} />
-        <TextInput style={styles.input} placeholder="Arriver" />
+        <TextInput
+          style={styles.input}
+          placeholder="Arriver"
+          returnKeyType="done"
+        />
       </View>
       <TouchableOpacity
         style={styles.addbutton}
