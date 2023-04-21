@@ -7,7 +7,7 @@ import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker"
 
 const EditTripsPage = ({ navigation, route }) => {
     const tripId = route.params.key;
-    const [tripData, setTripData] = useState([]);
+    const [tripData, setTripData] = useState({});
 
     const [errorMessage, setErrorMessage] = useState("");
     const [title, setTitle] = useState("");
@@ -25,8 +25,21 @@ const EditTripsPage = ({ navigation, route }) => {
     const [showStepsSuggestions, setShowStepsSuggestions] = useState(true);
 
     const fetchTripData = async () => {
-        const tripData = await readData(`trips/${tripId}`);
-        setTripData(tripData)
+      const tripData = await readData(`trips/${tripId}`);
+      setTripData(tripData);
+    }
+
+    const initializeData = () => {
+      let liste = []
+      setTitle(tripData.title);
+      setDescription(tripData.description);
+      setDepartureDate(tripData.departure_date);
+      setDeparture(tripData.departure);
+      setArrival(tripData.arrival);
+      for (let s in tripData.steps) {
+        liste = [...liste, { id : stepsList.length, name: tripData.steps[s]}];
+      }
+      setStepsList(liste);
     }
 
     const callDepartureChange = (text) => {handleAddressChange(text, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
@@ -51,7 +64,7 @@ const EditTripsPage = ({ navigation, route }) => {
     
       const renderSteps = ({ item }) => (
         <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-        <Text style={{ paddingVertical: 10 }}>{item.name}</Text>
+        <Text style={{ paddingVertical: 2 }}>{item.name}</Text>
         <TouchableOpacity onPress={() => deleteStep(item.id)}>
           <Text style={{color: "red", marginLeft: 10,}}>Supprimer</Text>
         </TouchableOpacity>
@@ -63,8 +76,12 @@ const EditTripsPage = ({ navigation, route }) => {
       }
 
     useEffect(() => {
-        fetchTripData();
+      fetchTripData();
     }, []);
+
+    useEffect(() => {
+      initializeData();
+    }, [tripData]);
 
     return (
         <View>
@@ -72,16 +89,16 @@ const EditTripsPage = ({ navigation, route }) => {
             {errorMessage ? <Text style={{ color: 'red', fontSize: 15 }}> {errorMessage} </Text> : null}
           </View>
           <Text>Titre:</Text>
-          <TextInput value={tripData.title} onChangeText={setTitle} />
+          <TextInput value={title} onChangeText={setTitle} style={{borderWidth: 1, borderRadius: 5}} />
     
           <Text>Description:</Text>
-          <TextInput value={description} onChangeText={setDescription} />
+          <TextInput value={description} onChangeText={setDescription} style={{borderWidth: 1, borderRadius: 5}} />
     
           <Text>Date départ (JJ/MM/AAAA):</Text>
-          <TextInput value={departureDate} onChangeText={setDepartureDate} />
+          <TextInput value={departureDate} onChangeText={setDepartureDate} style={{borderWidth: 1, borderRadius: 5}} />
     
           <Text>Depart:</Text>
-          <TextInput value={departure} onChangeText={callDepartureChange} />
+          <TextInput value={departure} onChangeText={callDepartureChange} style={{borderWidth: 1, borderRadius: 5}} />
           {showDepartureSuggestions && (
             <FlatList
               data={departureSuggestions}
@@ -94,7 +111,7 @@ const EditTripsPage = ({ navigation, route }) => {
           )}
     
           <Text>Arrivée:</Text>
-          <TextInput value={arrival} onChangeText={callArrivalChange} />
+          <TextInput value={arrival} onChangeText={callArrivalChange} style={{borderWidth: 1, borderRadius: 5}} />
           {showArrivalSuggestions && (
             <FlatList
               data={arrivalSuggestions}
@@ -127,7 +144,7 @@ const EditTripsPage = ({ navigation, route }) => {
           <FlatList
             data={stepsList}
             renderItem={renderSteps}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id}
           />
     
           <Button title="Modify Trip" />

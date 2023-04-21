@@ -58,7 +58,7 @@ const CreateTripPage = ({ navigation }) => {
 
   const renderSteps = ({ item }) => (
     <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-    <Text style={{ paddingVertical: 10 }}>{item.name}</Text>
+    <Text style={{ paddingVertical: 2 }}>{item.name}</Text>
     <TouchableOpacity onPress={() => deleteStep(item.id)}>
       <Text style={{color: "red", marginLeft: 10,}}>Supprimer</Text>
     </TouchableOpacity>
