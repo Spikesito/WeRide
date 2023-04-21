@@ -66,7 +66,7 @@ const CreateTripPage = ({ navigation }) => {
   }
 
   const createTrip = async () => {
-    if (errorHandler(setErrorMessage, title, description, departureDate, departure, arrival, stepsList)) {
+    if (errorHandler(setErrorMessage, title, description, departureDate, departure, arrival)) {
       setErrorMessage("");
       try {
         trip = {
