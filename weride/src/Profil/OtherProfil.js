@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useNavigation } from "@react-navigation/native";
 
 const OtherProfil = () => {
@@ -13,7 +11,6 @@ const OtherProfil = () => {
       <View style={styles.containerHead}>
         <Text style={styles.name}>THOYER Gabby</Text>
         <TouchableOpacity onPress={() => navigation.navigate('ModifProfil')}>
-          {/* <FontAwesomeIcon icon={icon({ name: 'pen' })} /> */}
         </TouchableOpacity>
       </View>
 

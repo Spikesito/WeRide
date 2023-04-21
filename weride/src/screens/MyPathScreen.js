@@ -1,8 +1,6 @@
 import React from "react";
-import { View, Text, Button, TouchableOpacity, StyleSheet, ImageBackground, Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NewPath from "../Path/NewPath";
 
 
 const MyPathScreen = () => {

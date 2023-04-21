@@ -38,10 +38,6 @@ const Slider = () => {
     return <View style={styles.pagination}>{dots}</View>;
   };
 
-  const handleStartButton = () => {
-    // Ajouter la fonction pour naviguer vers la page souhaitÃ©e
-  };
-
   return (
     <View style={styles.container}>
       <ScrollView

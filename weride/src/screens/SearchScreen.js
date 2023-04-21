@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
-import FilterScreen from '../Search/FilterScreen';
 import { Input } from 'react-native-elements';
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -21,8 +20,6 @@ const SearchBar = () => {
   const [recentSearches, setRecentSearches] = useState([]);
 
   const handleSearch = () => {
-    // Effectuez ici votre recherche en utilisant searchText
-    // Ajoutez ensuite searchText aux recherches récentes
     setRecentSearches([...recentSearches, searchText]);
     setSearchText('');
   };

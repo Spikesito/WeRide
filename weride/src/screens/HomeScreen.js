@@ -298,8 +298,8 @@ const styles = StyleSheet.create({
   discoverButton: {
     paddingHorizontal: 15,
     paddingVertical: 5,
-    borderBottomWidth: 2, // Ajoutez cette ligne
-    borderBottomColor: "black", // Ajoutez cette ligne
+    borderBottomWidth: 2,
+    borderBottomColor: "black",
   },
   buttonText: {
     fontSize: 16,

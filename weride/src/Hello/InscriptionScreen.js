@@ -1,10 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-import App from '../../App';
-
-// const Stack = createStackNavigator();
 
 const InscriptionScreen = () => {
   const navigation = useNavigation();
@@ -30,9 +26,6 @@ const InscriptionScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Mot de passe"
-      // value={password}
-      // secureTextEntry={true}
-      // onChangeText={handlePasswordChange}
       />
       <TouchableOpacity style={styles.button} name="Inscription" onPress={() => navigation.navigate("Slider")}>
         <Text style={styles.buttonText}>S'inscrire</Text>
@@ -71,7 +64,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    // backgroundColor: '#007bff',
     backgroundColor: '#FFCC33',
     borderRadius: 5,
     padding: 12,

@@ -7,8 +7,6 @@ const SearchBar = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleSearch = () => {
-    // Effectuez ici votre recherche en utilisant searchText
-    // Ajoutez ensuite searchText aux recherches récentes
     setRecentSearches([...recentSearches, searchText]);
     setSearchText('');
   };

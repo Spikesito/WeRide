@@ -3,7 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
-  Button,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -55,11 +54,11 @@ const styles = StyleSheet.create({
     height: '100%',
 },
 contentContainer: {
-    paddingBottom: 20, // Add some padding at the bottom
+    paddingBottom: 20,
 },
 image: {
     width: '100%',
-    height: 400, // Change this to a fixed height
+    height: 400,
     resizeMode: 'cover',
 },
   containerHead: {

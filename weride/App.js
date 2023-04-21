@@ -1,6 +1,4 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Tabs from "./src/Tab";
 import ConInscri from "./src/ConInscri";
@@ -9,10 +7,6 @@ import InscriptionScreen from "./src/Hello/InscriptionScreen";
 import Slider from "./src/screens/Slider";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
-// export default function App() {
-//   return <Tab />;
-// }
-
 
 export default function App() {
   return(

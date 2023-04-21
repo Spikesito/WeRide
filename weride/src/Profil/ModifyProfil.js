@@ -14,19 +14,6 @@ const ProfilScreen = () => {
     const [textInput2, setTextInput2] = useState('Tenere 700 - Yamaha');
     const [textInput3, setTextInput3] = useState('2020');
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('Choisissez une option');
-
-    const options = [
-        'Route',
-        'Cross',
-    ];
-
-    const handleOptionSelect = (option) => {
-        setSelectedOption(option);
-        setDropdownOpen(false);
-    };
-
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <Image source={require('../../assets/acteur/Emile.png')} style={styles.image} />
@@ -44,7 +31,6 @@ const ProfilScreen = () => {
             </View>
 
             <View style={styles.containerBody}>
-                {/* <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque eget nibh vitae vel ante cursus tincidunt.</Text> */}
                 <View>
                     <TextInput
                         multiline={true}
@@ -61,7 +47,6 @@ const ProfilScreen = () => {
                         onChangeText={setTextInput2}
                         value={textInput2}
                         placeholder="Tenere 700 - Yamaha"
-                    // onChangeText={setLocation}
                     />
                     <Text style={styles.text}>Année:</Text>
                     <TextInput
@@ -69,7 +54,6 @@ const ProfilScreen = () => {
                         onChangeText={setTextInput3}
                         value={textInput3}
                         placeholder="2020"
-                    // onChangeText={setLocation}
                     />
                     <Text style={styles.text}>Description:</Text>
                     <TextInput
@@ -78,7 +62,6 @@ const ProfilScreen = () => {
                         onChangeText={(text2) => setText2(text2)}
                         value={text2}
                         style={styles.textArea}
-                    // onChangeText={setLocation}
                     />
                 </View>
 
@@ -100,11 +83,11 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     contentContainer: {
-        paddingBottom: 20, // Add some padding at the bottom
+        paddingBottom: 20,
     },
     image: {
         width: '100%',
-        height: 400, // Change this to a fixed height
+        height: 400,
         resizeMode: 'cover',
     },
     containerHead: {

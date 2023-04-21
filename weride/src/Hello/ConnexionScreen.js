@@ -2,10 +2,6 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-import App from '../../App';
-
-// const Stack = createStackNavigator();
 
 const ConnexionScreen = () => {
   const navigation = useNavigation();
@@ -15,15 +11,10 @@ const ConnexionScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-      // value={email}
-      // onChangeText={handleEmailChange}
       />
       <TextInput
         style={styles.input}
         placeholder="Mot de passe"
-      // value={password}
-      // secureTextEntry={true}
-      // onChangeText={handlePasswordChange}
       />
       <TouchableOpacity style={styles.button} name="Connexion" onPress={() => navigation.navigate("Tabs")}>
         <Text style={styles.buttonText}>Se connecter</Text>
@@ -65,7 +56,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    // backgroundColor: '#007bff',
     backgroundColor: '#FFCC33',
     borderRadius: 5,
     padding: 12,

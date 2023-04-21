@@ -20,14 +20,12 @@ const ConInscri = () => {
       <TouchableOpacity
         style={styles.buttonConnexion}
         onPress={() => navigation.navigate("Connexion")}
-      // onPress={() => console.log("Connexion OK")}
       >
         <Text style={styles.textConnexion}>Se connecter</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.buttonInscription}
         onPress={() => navigation.navigate("Inscription")}
-      // onPress={() => console.log("Inscription OK")}
       >
         <Text style={styles.textInscription}>S'inscrire</Text>
       </TouchableOpacity>
@@ -57,10 +55,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 600,
     paddingVertical: 10,
-    paddingHorizontal: 20, // Modifié paddingHorizontal
+    paddingHorizontal: 20,
     marginBottom: 10,
     alignSelf: "center",
-    width: 280, // Modifié la largeur
+    width: 280,
   },
   buttonInscription: {
     borderWidth: 1,
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 10,
     alignSelf: "center",
-    width: 280, // Largeur fixe pour le bouton
+    width: 280,
   },
   textConnexion: {
     color: "black",

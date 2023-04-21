@@ -7,9 +7,7 @@ import {
   Image,
 } from "react-native";
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MyPathScreen from "../screens/MyPathScreen";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const NewPath = () => {
   const navigation = useNavigation();

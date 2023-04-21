@@ -1,9 +1,7 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Header } from "react-native-elements";
 import HomeScreen from "../screens/HomeScreen";
-import { setStatusBarBackgroundColor } from "expo-status-bar";
 import PostScreen from "../Post/PostScreen";
 import OtherProfil from "../Profil/OtherProfil";
 import MesAmis from "../Post/MesAmis";
@@ -53,11 +51,3 @@ const HomeStackScreen = () => {
 };
 
 export default HomeStackScreen;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     alignItems: "center",
-//     justifyContent: "center",
-//     alignContent: "center",
-//   },
-// });
