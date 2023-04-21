@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Button, FlatList } from "react-native";
 import { readData } from "../../ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { RadioButton } from "react-native-paper";
@@ -9,10 +9,8 @@ const HomePage = ({ navigation }) => {
   const [friendsTripskeys, setFriendsTripsKeys] = useState({});
   const [tripsData, setTripsData] = useState({});
   const [tripskeys, setTripsKeys] = useState({});
-  const [userData, setUserData] = useState({});
   const [checked, setChecked] = useState('discover');
   let friends = []
-  let newFriendsId = [];
   let currentUser = auth.currentUser.uid;
 
   const fetchFriends = async () => {
@@ -50,44 +48,11 @@ const HomePage = ({ navigation }) => {
     }));
   }
 
-  const fetchUserData = async () => {
-    const userData = await readData(`users/${currentUser}`);
-    setUserData(userData);
-  }
-
   useEffect(() => {
     fetchFriends();
     fetchFriendsTrips();
     fetchTripData();
-    // fetchUserData() // to add friend , functions commented at the end of the file
   }, []);
-
-  const addCreatorToFriend = (creatorId) => {
-    if (creatorId != currentUser) {
-      if (userData.friends_id === undefined) {
-        let friends_id = [creatorId];
-        updateUser(friends_id);
-        alert('ajout de cet utilisateur à votre liste ami');
-      } else if (!userData.friends_id.includes(creatorId)) {
-        userData.friends_id.push(creatorId);
-        alert('ajout de cet utilisateur à votre liste ami');
-      } else if (userData.friends_id.includes(creatorId)) {
-        newFriendsId = userData.friends_id.filter(e => e != creatorId);
-        alert("suppression de cet utilisateur de votre liste ami");
-        console.log(newFriendsId)
-        userData.friends_id = newFriendsId;
-      }
-      updateData(`users/${currentUser}`, userData);
-    }
-  }
-
-  const updateUser = (friends_id) => {
-    setUserData(Object.assign({}, userData, {friends_id: friends_id}));
-  }
-
-  useEffect (() => {
-    setUserData(userData)
-  }, [newFriendsId]);
 
   const renderItem = ({ item, index }) => {
     let key
@@ -102,20 +67,7 @@ const HomePage = ({ navigation }) => {
           <Text>{item.title}</Text>
           <Text>{item.departure_date}</Text>
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <TouchableOpacity
-              style={{backgroundColor: "blue", padding: 5, marginRight: 10}}
-              onPress={() => navigation.navigate("TripsDetails", { key })}
-              >
-            <Text style={{fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center'}} >VOIR LE TRIP</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-              style={{backgroundColor: "blue", padding: 5, marginRight: 10}}
-              onPress={() => addCreatorToFriend(item.creator)}
-              >
-            <Text style={{fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center'}} >SUIVRE LE CREATEUR</Text>
-          </TouchableOpacity>
-        </View>
+        <Button title="Voir le trip " style={{ with: '15%' }} onPress={() => navigation.navigate("TripsDetails", { key })} />
       </View>
     );
   };
@@ -166,72 +118,9 @@ const HomePage = ({ navigation }) => {
       <Button title="Créer un trajet" onPress={() => navigation.navigate("CreateTrip")} />
       <Button title="Page profil" onPress={() => navigation.navigate("Profile")} />
       <Button title="Messagerie" onPress={() => navigation.navigate("Messaging")} />
-
       <Button title="Se déconnecter" onPress={handleLogOut} />
     </View>
   );
 };
 
 export default HomePage;
-
-
-// Last minute implementation not working 
-
-// const addCreatorToFriend = (creatorId) => {    Function created, but not working correctly
-  //   console.log(userData.friends_id)
-  //   if (creatorId != currentUser) {
-  //     if (userData.friends_id === undefined) {
-  //       let friends_id = [creatorId];
-  //       updateUser(friends_id);
-  //       alert('ajout de cet utilisateur à votre liste ami');
-  //     } else if (!userData.friends_id.includes(creatorId)) {
-  //       userData.friends_id.push(creatorId);
-  //       alert('ajout de cet utilisateur à votre liste ami');
-  //     } else if (userData.friends_id.includes(creatorId)) {
-  //       newFriendsId = userData.friends_id.filter(e => e != creatorId);
-  //       alert("suppression de cet utilisateur de votre liste ami");
-  //       console.log(newFriendsId)
-  //       userData.friends_id = newFriendsId;
-  //     }
-  //     updateData(`users/${currentUser}`, userData);
-  //   }
-  // }
-
-  // const updateUser = (friends_id) => {
-  //   setUserData(Object.assign({}, userData, { friends_id: friends_id }));
-  // }
-
-  // useEffect(() => {
-  //   setUserData(userData)
-  // }, [newFriendsId]);
-
-  // const [userData, setUserData] = useState([]);
-  // let newFriendsId = [];
-
-  // const fetchUserData = async () => {
-  //   const userData = await readData(`users/${currentUser}`);
-  //   setUserData(userData);
-  // }
-
-  // return (
-    //   <View style={{ padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-    //     <View>
-    //       <Text>{item.title}</Text>
-    //       <Text>{item.departure_date}</Text>
-    //     </View>
-    //     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-    //       <TouchableOpacity
-    //         style={{ backgroundColor: "blue", padding: 5, marginRight: 10 }}
-    //         onPress={() => navigation.navigate("TripsDetails", { key })}
-    //       >
-    //         <Text style={{ fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center' }} >VOIR LE TRIP</Text>
-    //       </TouchableOpacity>
-    //       <TouchableOpacity
-    //         style={{ backgroundColor: "blue", padding: 5, marginRight: 10 }}
-    //         onPress={() => addCreatorToFriend(item.creator)}
-    //       >
-    //         <Text style={{ fontSize: 16, color: "#FFF", fontWeight: 'bold', textAlign: 'center' }} >SUIVRE LE CREATEUR</Text>
-    //       </TouchableOpacity>
-    //     </View>
-    //   </View>
-    // );
