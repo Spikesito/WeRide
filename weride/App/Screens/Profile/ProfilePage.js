@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, FlatList } from "react-native";
-import { readData } from "../../CRUD";
+import { View, Text, Button } from "react-native";
+import { readData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 
 const ProfilePage = ({ navigation }) => {

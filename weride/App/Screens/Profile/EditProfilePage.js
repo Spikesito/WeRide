@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { updateData } from "../../CRUD";
+import { updateData, readData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
-import { readData } from "../../CRUD";
 import { updateEmail, updatePassword } from "firebase/auth";
 
 const EditProfilePage = ({ navigation }) => {

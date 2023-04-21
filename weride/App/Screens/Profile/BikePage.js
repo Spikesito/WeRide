@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { readData } from "../../CRUD";
-import { updateData } from "../../CRUD";
+import { readData, updateData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 
 const BikePage = ({ navigation }) => {

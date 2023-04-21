@@ -16,6 +16,7 @@ import ConversationPage from "./App/Screens/Messages/ConversationPage";
 import BikePage from "./App/Screens/Profile/BikePage";
 import MessagingPage from "./App/Screens/Messages/Messaging";
 import EditTripsPage from "./App/Screens/Profile/EditTripsPage";
+import TripsDetails from "./App/Screens/Trips/TripDetailsPage";
 
 const Stack = createStackNavigator();
 
@@ -42,9 +43,11 @@ const App = () => {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
+
         <Stack.Screen name="Home" component={HomePage} initialParams={{}} />
         <Stack.Screen name="CreateTrip" component={CreateTripPage} initialParams={{ currentUser }} />
         <Stack.Screen name="AddFriends" component={AddFriends} initialParams={{}} />
+        <Stack.Screen name="TripsDetails" component={TripsDetails} initialParams={{}} />
 
         <Stack.Screen name="FriendsTrips" component={FriendsTrips} initialParams={{}} />
         <Stack.Screen name="Conversation" component={ConversationPage} />

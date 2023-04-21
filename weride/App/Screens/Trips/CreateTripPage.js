@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from "react-native";
-import { createData, readData } from "../../CRUD";
+import { createData, createNewMessaging, createNewTrip, readData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 import { handleAddressChange, handleAddressSelect } from "../../Components/ExternalFunction/FuncApiAdd";
 import { errorHandler } from "../../Components/ExternalFunction/FuncFromChecker";
+import { push, ref, child } from "firebase/database";
+import { db } from "../../firebase";
 
 const CreateTripPage = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,6 +25,7 @@ const CreateTripPage = ({ navigation }) => {
 
 
   let trip;
+  let messaging;
   let currentUserData;
   const currentUser = auth.currentUser.uid;
 
@@ -36,21 +39,16 @@ const CreateTripPage = ({ navigation }) => {
     fetchUserData();
   }, []);
 
-  const callDepartureChange = (text) => {handleAddressChange(text, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
-
-  const callDepartureSelect = (item) => {handleAddressSelect(item, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions);};
-
-  const callArrivalChange = (text) => {handleAddressChange(text, setArrival, setArrivalSuggestions, setShowArrivalSuggestions);};
-
-  const callArrivalSelect = (item) => {handleAddressSelect(item, setArrival, setArrivalSuggestions, setShowArrivalSuggestions);};
-
-  const callStepsChange = (text) => {handleAddressChange(text, setStep, setStepsSuggestions, setShowStepsSuggestions);};
-
-  const callStepsSelect = (item) => {handleAddressSelect(item, setStep, setStepsSuggestions, setShowStepsSuggestions);};
+  const callDepartureChange = (text) => { handleAddressChange(text, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions); };
+  const callDepartureSelect = (item) => { handleAddressSelect(item, setDeparture, setDepartureSuggestions, setShowDepartureSuggestions); };
+  const callArrivalChange = (text) => { handleAddressChange(text, setArrival, setArrivalSuggestions, setShowArrivalSuggestions); };
+  const callArrivalSelect = (item) => { handleAddressSelect(item, setArrival, setArrivalSuggestions, setShowArrivalSuggestions); };
+  const callStepsChange = (text) => { handleAddressChange(text, setStep, setStepsSuggestions, setShowStepsSuggestions); };
+  const callStepsSelect = (item) => { handleAddressSelect(item, setStep, setStepsSuggestions, setShowStepsSuggestions); };
 
   const addStepToList = () => {
     if (step) {
-      setStepsList([...stepsList, { id : stepsList.length, name: step}]);
+      setStepsList([...stepsList, { id: stepsList.length, name: step }]);
       setStep('');
       setShowStepsSuggestions(false)
     }
@@ -74,17 +72,25 @@ const CreateTripPage = ({ navigation }) => {
       setErrorMessage("");
       try {
         trip = {
-            title: title,
-            description: description,
-            departure_date: departureDate,
-            departure: departure,
-            arrival: arrival,
-            steps: stepsList.map(step => step.name),
-            creator: currentUser,
-            participant: [],
-            messaging: "id_de_la_messagerie",
+          title: title,
+          description: description,
+          departure_date: departureDate,
+          departure: departure,
+          arrival: arrival,
+          steps: stepsList.map(step => step.name),
+          creator: currentUser,
+          participant: [currentUser],
         };
-        createData('trips/', trip);
+        
+        const newTripKey = await createNewTrip('trips/', trip);
+  
+        messaging = {
+          participant: [currentUser],
+          messages: []
+        };
+  
+        await createNewMessaging(`messaging/${newTripKey}`, messaging);
+  
         console.log("le trip a été créé", trip);
         navigation.navigate("Home");
       }
@@ -134,14 +140,15 @@ const CreateTripPage = ({ navigation }) => {
         />
       )}
 
-      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-      <Text>Étapes:</Text>
-      <TextInput value={step} onChangeText={callStepsChange} style={{width: '80%', paddingLeft: 10}}/>
-      <Button title="Ajouter" onPress={addStepToList} style={{with: '15%'}}/>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text>Étapes:</Text>
+        <TextInput value={step} onChangeText={callStepsChange} style={{ width: '80%', paddingLeft: 10 }} />
+        <Button title="Ajouter" onPress={addStepToList} style={{ with: '15%' }} />
       </View>
 
       {showStepsSuggestions && (
-        <FlatList style={{marginBottom: 15}}
+        <FlatList
+          style={{ marginBottom: 15 }}
           data={stepsSuggestions}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => callStepsSelect(item)}>

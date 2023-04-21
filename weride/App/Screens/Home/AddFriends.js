@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { createData, readData, updateData } from "../../CRUD";
+import { readData, updateData } from "../../Components/ExternalFunction/CRUD";
 import { auth } from "../../firebase";
 
 const AddFriends = ({ navigation }) => {
