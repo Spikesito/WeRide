@@ -1,6 +1,12 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import React from "react";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 const InscriptionScreen = () => {
   const navigation = useNavigation();
@@ -10,24 +16,33 @@ const InscriptionScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="NOM Prénom"
+        returnKeyType="done"
       />
       <TextInput
         style={styles.input}
         placeholder="Nom d'utilisation"
+        returnKeyType="done"
       />
       <TextInput
         style={styles.input}
         placeholder="Date de naissance"
+        returnKeyType="done"
       />
       <TextInput
         style={styles.input}
         placeholder="Adresse mail"
+        returnKeyType="done"
       />
       <TextInput
         style={styles.input}
         placeholder="Mot de passe"
+        returnKeyType="done"
       />
-      <TouchableOpacity style={styles.button} name="Inscription" onPress={() => navigation.navigate("Slider")}>
+      <TouchableOpacity
+        style={styles.button}
+        name="Inscription"
+        onPress={() => navigation.navigate("Slider")}
+      >
         <Text style={styles.buttonText}>S'inscrire</Text>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>
@@ -40,47 +55,47 @@ const InscriptionScreen = () => {
   );
 };
 
-export default InscriptionScreen
+export default InscriptionScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 60,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
-    paddingBottom: '10%',
+    paddingBottom: "10%",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
-    width: '100%',
+    width: "100%",
   },
   button: {
-    backgroundColor: '#FFCC33',
+    backgroundColor: "#FFCC33",
     borderRadius: 5,
     padding: 12,
-    width: '100%',
-    height: '7%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "100%",
+    height: "7%",
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 25,
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   bottomContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 20,
-    paddingTop: '40%',
+    paddingTop: "40%",
   },
   bottomText: {
     marginRight: 10,
@@ -88,8 +103,8 @@ const styles = StyleSheet.create({
   },
 
   bottomButtonText: {
-    color: 'blue',
+    color: "blue",
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });

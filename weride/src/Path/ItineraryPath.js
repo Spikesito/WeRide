@@ -37,15 +37,18 @@ const ItineraryPath = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/lyon2.jpg')} style={{ width: '120%', height: '50%', marginTop: '-12%' }} />
+      <Image
+        source={require("../../assets/lyon2.jpg")}
+        style={{ width: "120%", height: "50%", marginTop: "-12%" }}
+      />
       <Text style={styles.title}>Itinéraire</Text>
       <View style={styles.inputContainer}>
         <FontAwesomeIcon style={styles.icon} icon={faMapMarkerAlt} />
-        <TextInput style={styles.input} value="Départ" placeholder="Input 1" />
+        <TextInput style={styles.input} placeholder="Départ" />
       </View>
       <View style={styles.inputContainer}>
         <FontAwesomeIcon style={styles.icon} icon={faMapMarkerAlt} />
-        <TextInput style={styles.input} value="Arriver" placeholder="Input 2" />
+        <TextInput style={styles.input} placeholder="Arriver" />
       </View>
       <TouchableOpacity
         style={styles.addbutton}
@@ -100,9 +103,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: '5%',
-    marginLeft: '-70%',
+    fontWeight: "bold",
+    marginTop: "5%",
+    marginLeft: "-70%",
     marginBottom: 15,
   },
   input: {

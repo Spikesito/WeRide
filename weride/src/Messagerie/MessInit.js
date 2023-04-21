@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -11,10 +11,14 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPaperPlane, faPaperclip, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faPaperPlane,
+  faPaperclip,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const MessScreen = () => {
   const navigation = useNavigation();
@@ -22,9 +26,10 @@ const MessScreen = () => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 85 : 30}
-      enabled>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 85 : 30}
+      enabled
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View style={styles.header}>
@@ -34,24 +39,35 @@ const MessScreen = () => {
             <Text style={styles.title}>Christophe Seguret</Text>
             <TouchableOpacity
               style={styles.plusButton}
-              onPress={() => navigation.navigate('Profiluser')}>
-              <Image source={require('../../assets/acteur/Christophe.png')} style={styles.photo}/>
+              onPress={() => navigation.navigate("Profiluser")}
+            >
+              <Image
+                source={require("../../assets/acteur/Christophe.png")}
+                style={styles.photo}
+              />
             </TouchableOpacity>
           </View>
           <ScrollView>
             {/* Ici, mapper les messages à partir de liste de messages */}
             <View style={styles.message}>
               <View style={styles.senderPhotoContainer}>
-              <Image source={require('../../assets/acteur/Christophe.png')} style={styles.senderPhoto}/>
+                <Image
+                  source={require("../../assets/acteur/Christophe.png")}
+                  style={styles.senderPhoto}
+                />
               </View>
               <View style={styles.senderMessageContainer}>
-                <Text style={styles.senderMessageText}>Hey, comment ça va ?</Text>
+                <Text style={styles.senderMessageText}>
+                  Hey, comment ça va ?
+                </Text>
                 <Text style={styles.timeText}>13:45</Text>
               </View>
             </View>
             <View style={[styles.message1]}>
               <View style={styles.myMessageContainer1}>
-                <Text style={styles.myMessageText1}>Salut Alice, ça va bien et toi ?</Text>
+                <Text style={styles.myMessageText1}>
+                  Salut Alice, ça va bien et toi ?
+                </Text>
                 <Text style={[styles.timeText, styles.timeText1]}>13:48</Text>
               </View>
             </View>
@@ -84,23 +100,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#1877F2',
+    backgroundColor: "#FFCC33",
     paddingTop: 40,
     paddingBottom: 10,
     paddingHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   backIcon: {
-    color: 'white',
+    color: "white",
     marginRight: 10,
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 24,
     flex: 1,
-    textAlign: 'center',
+    textAlign: "center",
   },
   plusButton: {
     width: 40,
@@ -116,21 +132,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 15,
-    backgroundColor: '#BAC6D5',
+    backgroundColor: "#BAC6D5",
     borderRadius: 15,
-    flexDirection: 'row',
-    maxWidth: '70%',
+    flexDirection: "row",
+    maxWidth: "70%",
   },
   message1: {
     padding: 15,
     marginTop: 10,
     marginBottom: 10,
     marginRight: 100,
-    backgroundColor: '#BAC6D5',
+    backgroundColor: "#BAC6D5",
     borderRadius: 15,
-    alignItems: 'flex-start',
-    flexDirection: 'row-reverse',
-    maxWidth: '70%',
+    alignItems: "flex-start",
+    flexDirection: "row-reverse",
+    maxWidth: "70%",
   },
   senderPhotoContainer: {
     marginRight: 10,
@@ -144,7 +160,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   senderName: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
   senderMessageText: {
@@ -155,46 +171,47 @@ const styles = StyleSheet.create({
   },
   myMessageText1: {
     fontSize: 16,
-    textAlign: 'left',
+    textAlign: "left",
   },
   timeText: {
     fontSize: 12,
-    color: '#777',
-    alignSelf: 'flex-end',
+    color: "#777",
+    alignSelf: "flex-end",
     marginTop: 5,
   },
   timeText1: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "white",
     borderTopWidth: 1,
-    borderTopColor: '#ccc',
+    borderTopColor: "#ccc",
     padding: 10,
   },
   attachmentButton: {
     marginRight: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   input: {
     flex: 1,
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     paddingHorizontal: 15,
     minHeight: 40,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
+    minHeight: 30,
   },
   sendButton: {
-    backgroundColor: '#1877F2',
+    backgroundColor: "#FFF",
     borderRadius: 30,
     padding: 10,
     marginLeft: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

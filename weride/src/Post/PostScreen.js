@@ -1,9 +1,24 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faEllipsisV, faBookmark, faHeart, faComment, faShare, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+} from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faEllipsisV,
+  faBookmark,
+  faHeart,
+  faComment,
+  faShare,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const HomeScreen = ({ userImage, userName }) => {
   const navigation = useNavigation();
@@ -11,12 +26,21 @@ const HomeScreen = ({ userImage, userName }) => {
 
   return (
     <ScrollView style={styles.container}>
-    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
         <FontAwesomeIcon icon={faArrowLeft} size={24} color="#000" />
       </TouchableOpacity>
       <View style={styles.userProfileContainer}>
-        <Image source={require('../../assets/Gabby.png')} style={styles.userImage} />
-        <TouchableOpacity style={styles.nameContainer} onPress={() => navigation.navigate('OtherProfil')}>
+        <Image
+          source={require("../../assets/Gabby.png")}
+          style={styles.userImage}
+        />
+        <TouchableOpacity
+          style={styles.nameContainer}
+          onPress={() => navigation.navigate("OtherProfil")}
+        >
           <Text style={styles.userName}>{userName}</Text>
           <Text style={styles.subText}> THOYER Gabby</Text>
           <Text style={styles.subText}>05 février 2023</Text>
@@ -46,7 +70,10 @@ const HomeScreen = ({ userImage, userName }) => {
         </View>
       </View>
       <View style={styles.imageContainer}>
-        <Image source={require('../../assets/imageFond/PostGabby.jpeg')} style={styles.mainImage} />
+        <Image
+          source={require("../../assets/imageFond/PostGabby.jpeg")}
+          style={styles.mainImage}
+        />
         <TouchableOpacity style={styles.saveButton}>
           <FontAwesomeIcon icon={faBookmark} size={20} color="#000" />
         </TouchableOpacity>
@@ -63,15 +90,30 @@ const HomeScreen = ({ userImage, userName }) => {
         </TouchableOpacity>
       </View>
       <Text style={styles.loremIpsumText}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </Text>
       <Text style={styles.participantsText}>Nombre de participants : 10</Text>
       <View style={styles.participantImages}>
-        <Image source={require('../../assets/acteur/Emile.png')} style={styles.participantImage} />
-        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
-        <Image source={require('../../assets/motoAcceuil.jpg')} style={styles.participantImage} />
+        <Image
+          source={require("../../assets/acteur/Emile.png")}
+          style={styles.participantImage}
+        />
+        <Image
+          source={require("../../assets/motoAcceuil.jpg")}
+          style={styles.participantImage}
+        />
+        <Image
+          source={require("../../assets/motoAcceuil.jpg")}
+          style={styles.participantImage}
+        />
       </View>
-      </ScrollView>
+    </ScrollView>
   );
 };
 
@@ -81,11 +123,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
+    marginTop: 35,
   },
   userProfileContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingTop: 10,
   },
   userImage: {
@@ -99,53 +142,53 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   subText: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
   optionsButton: {
     paddingHorizontal: 10,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 20,
     marginBottom: 10,
   },
   infoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   infoSection: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   infoLabel: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
   infoValue: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   verticalLine: {
-    height: '100%',
+    height: "100%",
     width: 1,
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
   },
   imageContainer: {
     marginTop: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   mainImage: {
-    width: '90%',
-    height: Dimensions.get('window').height * 0.3,
+    width: "90%",
+    height: Dimensions.get("window").height * 0.3,
     borderRadius: 5,
   },
   saveButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     right: 20,
     paddingHorizontal: 10,
@@ -153,8 +196,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   actionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "flex-start",
     marginTop: 10,
   },
   actionButton: {
@@ -166,32 +209,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 5,
     marginRight: 10,
-    backgroundColor: '#2196F3',
+    backgroundColor: "#2196F3",
     borderRadius: 5,
   },
   followButtonText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 14,
   },
   backButton: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     marginTop: 10,
     marginLeft: 10,
   },
   loremIpsumText: {
     marginTop: 20,
     fontSize: 14,
-    textAlign: 'justify',
+    textAlign: "justify",
   },
   participantsText: {
     marginTop: 20,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   participantImages: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     marginTop: 10,
   },
   participantImage: {

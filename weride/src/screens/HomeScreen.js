@@ -29,7 +29,9 @@ const HomeScreen = ({ userImage, userName }) => {
     <ScrollView style={styles.container}>
       {/* HEADER */}
       <View style={styles.header}>
-        <FontAwesomeIcon icon={faUsers} size={24} color="#000" />
+        <TouchableOpacity onPress={() => navigation.navigate("MyFriend")}>
+          <FontAwesomeIcon icon={faUsers} size={24} color="#000" />
+        </TouchableOpacity>
         <Image
           source={require("../../assets/LOGO_WE_RIDE.png")}
           style={styles.headerTitle}
@@ -54,7 +56,10 @@ const HomeScreen = ({ userImage, userName }) => {
           source={require("../../assets/Gabby.png")}
           style={styles.userImage}
         />
-        <TouchableOpacity style={styles.nameContainer} onPress={() => navigation.navigate('OtherProfil')}>
+        <TouchableOpacity
+          style={styles.nameContainer}
+          onPress={() => navigation.navigate("OtherProfil")}
+        >
           <Text style={styles.userName}>{userName}</Text>
           <Text style={styles.subText}> THOYER Gabby</Text>
           <Text style={styles.subText}>05 février 2023</Text>
@@ -112,7 +117,10 @@ const HomeScreen = ({ userImage, userName }) => {
           source={require("../../assets/Gabby.png")}
           style={styles.userImage}
         />
-        <TouchableOpacity style={styles.nameContainer} onPress={() => navigation.navigate('OtherProfil')}>
+        <TouchableOpacity
+          style={styles.nameContainer}
+          onPress={() => navigation.navigate("OtherProfil")}
+        >
           <Text style={styles.userName}>{userName}</Text>
           <Text style={styles.subText}>THOYER Gabby</Text>
           <Text style={styles.subText}>10 décembre 2022</Text>
@@ -176,7 +184,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   line: {
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     borderBottomWidth: 1,
     marginVertical: 10,
   },

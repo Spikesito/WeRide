@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Header } from 'react-native-elements';
+import { Header } from "react-native-elements";
 import MessScreen from "../screens/MessScreen";
 import MessInit from "../Messagerie/MessInit";
 
@@ -8,15 +8,15 @@ const MessStackScreen = () => {
   const MessStack = createNativeStackNavigator();
   return (
     <MessStack.Navigator
-     screenOptions={{
+      screenOptions={{
         header: (props) => <Header {...props} />,
       }}
-      >
+    >
       <MessStack.Screen
         name="Messagerie"
         component={MessScreen}
         options={{
-          title: '',
+          title: "",
           headerShown: false,
         }}
       />
@@ -24,7 +24,8 @@ const MessStackScreen = () => {
         name="Message"
         component={MessInit}
         options={{
-          title: '',
+          title: "",
+          headerShown: false,
         }}
       />
     </MessStack.Navigator>

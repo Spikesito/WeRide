@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   buttonDivider: {
     width: 1,
     height: "100%",
-    backgroundColor: "green",
+    backgroundColor: "black",
     marginHorizontal: 10,
   },
 });
