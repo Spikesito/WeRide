@@ -10,6 +10,7 @@ const EditProfilePage = ({ navigation }) => {
   const [new_firstname, setFirstName] = useState("");
   const [new_pseudo, setPseudo] = useState("");
   const [new_email, setEmail] = useState("");
+  const [new_phone_number, setPhoneNumber] = useState("");
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPass, setNewPass] = useState("")
@@ -23,6 +24,7 @@ const EditProfilePage = ({ navigation }) => {
     setFirstName(currentUserData.firstname)
     setPseudo(currentUserData.pseudo)
     setEmail(currentUserData.email)
+    setPhoneNumber(currentUserData.phone_number)
   }
 
   const reAuthenticateForPass = async () => {
@@ -63,6 +65,7 @@ const EditProfilePage = ({ navigation }) => {
       firstname: new_firstname,
       pseudo: new_pseudo,
       email: new_email,
+      phone_number: new_phone_number
     };
 
     await updateData(`users/${currentUser.uid}`, updatedData);
@@ -79,6 +82,9 @@ const EditProfilePage = ({ navigation }) => {
 
       <Text>Email:</Text>
       <TextInput value={new_email} onChangeText={setEmail} />
+
+      <Text>Email:</Text>
+      <TextInput value={new_phone_number} onChangeText={setPhoneNumber} />
 
       <Text>Current Password:</Text>
       <TextInput value={currentPassword} onChangeText={setCurrentPassword} secureTextEntry />
