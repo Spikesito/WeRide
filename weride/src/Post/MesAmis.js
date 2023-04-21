@@ -28,12 +28,16 @@ const MesAmis = ({ userImage, userName }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <FontAwesomeIcon icon={faUsers} size={24} color="#000" />
+        <TouchableOpacity onPress={() => navigation.navigate("MyFriend")}>
+          <FontAwesomeIcon icon={faUsers} size={24} color="#000" />
+        </TouchableOpacity>
         <Image
           source={require("../../assets/LOGO_WE_RIDE.png")}
           style={styles.headerTitle}
         />
-        <FontAwesomeIcon icon={faCog} size={24} color="#000" />
+        <TouchableOpacity onPress={() => navigation.navigate("Params")}>
+          <FontAwesomeIcon icon={faCog} size={24} color="#000" />
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={[styles.friendButton, styles.activeButton]}>
