@@ -6,6 +6,8 @@ Vous retrouverez la partie front et la partie back sur deux branches différente
 - Sur la branche ```master/back```, vous retrouverez toute la partie back, réalisée par Quentin FAYOLLE et Emile SEGURET.
 - Et sur la branche ```master/front```, vous retrouverez toute la partie front, réalisée par Gabby THOYER et Amaury LYONNET.
 
+Ce projet sera amené à être terminé dans d'ici Septembre 2023 donc restez à l'affût si vous souhaitez voir la suite !
+
 
 ## 🧐 Fonctionnalités
 Front:
